@@ -1,4 +1,4 @@
-# PostcodeValidation
+# PostcodeValidation [![Build Status](https://travis-ci.org/madetech/postcode_validation.svg?branch=master)](https://travis-ci.org/madetech/postcode_validation)
 
 This gem provides basic postcode validation functionality which can be used in any application
  
