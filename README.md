@@ -25,16 +25,28 @@ Or install it yourself as:
 
 ### Using with Solidus
 
-TODO
+```ruby
+require 'postcode_validation'
+require 'postcode_validation/plugins/solidus'
+Spree::Order.include(PostcodeValidation::SpreeOrderPostcodeValid)
+````
+
+NB: Error reporting currently only works with a Tagged Logger
 
 ### Bespoke application usage
 
 ```ruby
+require 'postcode_validation'
 use_case = PostcodeValidation::UseCase::ValidateAddress.new(
   address_match_gateway: PostcodeValidation::Gateway::PCAPotentialAddressMatch.new
 )
 
 valid = use_case.execute(postcode: 'SE10SW', country: 'GB')[:valid?]
+```
+
+```
+> valid
+true
 ```
 
 Country must be a valid 2-letter ISO country code.
