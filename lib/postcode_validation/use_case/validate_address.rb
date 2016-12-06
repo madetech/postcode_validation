@@ -1,8 +1,9 @@
 module PostcodeValidation
   module UseCase
     class ValidateAddress
-      def initialize(address_match_gateway:)
+      def initialize(address_match_gateway:, logger: nil)
         @address_match_gateway = address_match_gateway
+        @logger = logger
       end
 
       def execute(postcode:, country:)
@@ -16,9 +17,11 @@ module PostcodeValidation
 
       private
 
-      attr_reader :address_match_gateway, :postcode, :country
+      attr_reader :address_match_gateway, :logger, :postcode, :country
 
-      def on_error(e) ; end
+      def on_error(e)
+        logger.error(e) unless logger.nil?
+      end
 
       def valid_postcode?
         address = first_potential_address

@@ -1,4 +1,10 @@
 module PostcodeValidation
+  class RailsLogger
+    def error(error)
+      Rails.logger.tagged('Remote-Validate-Address') { Rails.logger.error(error.message) }
+    end
+  end
+
   module SpreeOrderPostcodeValid
     extend ActiveSupport::Concern
 
@@ -26,7 +32,8 @@ module PostcodeValidation
 
     def use_case
       PostcodeValidation::UseCase::ValidateAddress.new(
-        address_match_gateway: PostcodeValidation::Gateway::PCAPotentialAddressMatch.new
+        address_match_gateway: PostcodeValidation::Gateway::PCAPotentialAddressMatch.new,
+        logger: PostcodeValidation::RailsLogger.new
       )
     end
   end
