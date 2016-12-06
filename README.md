@@ -2,6 +2,11 @@
 
 This gem provides basic postcode validation functionality which can be used in any application
  
+The specific validation that we perform goes beyond simple regex matching, to determine if the postcode actually exists.
+ 
+To do this it uses PCAPredict.com's Capture+ API. 
+By leveraging this service we are able to provide validation against country's postcode that they support.
+ 
 It also comes with out of the box plugins for:
 
 - Solidus
@@ -23,6 +28,10 @@ Or install it yourself as:
     $ gem install postcode_validation
 
 ## Usage
+
+This gem relies on ```ENV['POSTCODE_ANYWHERE_KEY']``` being set to a valid PCAPredict service key for Capture+. 
+
+One of the easiest ways to do this is to use the ```dotenv``` gem for this in your host application.
 
 ### Using with Solidus
 
