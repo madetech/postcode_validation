@@ -1,8 +1,9 @@
 # PostcodeValidation
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/postcode_validation`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem provides basic postcode validation functionality which can be used in any application
+ 
+It also comes with out of the box plugins for:
+- Solidus
 
 ## Installation
 
@@ -22,7 +23,22 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Using with Solidus
+
+TODO
+
+### Bespoke application usage
+
+```ruby
+use_case = PostcodeValidation::UseCase::ValidateAddress.new(
+  address_match_gateway: PostcodeValidation::Gateway::PCAPotentialAddressMatch.new
+)
+
+valid = use_case.execute(postcode: 'SE10SW', country: 'GB')[:valid?]
+```
+
+Country must be a valid 2-letter ISO country code.
+Postcode is the postcode under test.
 
 ## Development
 
@@ -32,10 +48,19 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/postcode_validation.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/madetech/postcode_validation.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
+##Credits
+
+Developed and maintained by [Made](http://www.madetech.co.uk?ref=github&repo=postcode_validation).
+
+[![made](https://s3-eu-west-1.amazonaws.com/made-assets/googleapps/google-apps.png)](http://www.madetech.co.uk?ref=github&repo=postcode_validation)
+
+Key contributions:
+
+* [Craig J. Bass](https://github.com/craigjbass)
+* [Seb Ashton](https://github.com/sebashton)

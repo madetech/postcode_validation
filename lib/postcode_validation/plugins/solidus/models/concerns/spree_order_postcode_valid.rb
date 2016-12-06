@@ -25,7 +25,9 @@ module PostcodeValidation
     end
 
     def use_case
-      Prometheus::UseCase::ValidateAddress.new(address_match_gateway: Prometheus::Gateway::PCAPotentialAddressMatch.new)
+      PostcodeValidation::UseCase::ValidateAddress.new(
+        address_match_gateway: PostcodeValidation::Gateway::PCAPotentialAddressMatch.new
+      )
     end
   end
 end
