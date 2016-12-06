@@ -3,6 +3,7 @@
 This gem provides basic postcode validation functionality which can be used in any application
  
 It also comes with out of the box plugins for:
+
 - Solidus
 
 ## Installation
