@@ -58,4 +58,16 @@ describe PostcodeValidation::UseCase::ValidateAddress do
       end
     end
   end
+
+  context 'given two matches and the first is not exact' do
+    let(:potential_address_matches) do
+      [
+        PostcodeValidation::Domain::PotentialAddressMatch.new(text: 'N10, Danesgate House, 49 Clasketgate'),
+        PostcodeValidation::Domain::PotentialAddressMatch.new(text: 'N1 0ED')
+      ]
+    end
+    let(:postcode) { 'N1 0ED' }
+    let(:country) { 'GB' }
+    it { expect(subject[:valid?]).to be_truthy }
+  end
 end
