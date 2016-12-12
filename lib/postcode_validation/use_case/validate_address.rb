@@ -24,16 +24,16 @@ module PostcodeValidation
       end
 
       def valid_postcode?
-        address = first_potential_address
-        return false if address.nil?
+        matches = potential_address_matches
+        return false if matches.first.nil?
 
-        address.postcode_matches? postcode
+        matches.map { |address| return true if address.postcode_matches? postcode }
+        false
       end
 
-      def first_potential_address
-        potential_address_matches = @address_match_gateway.query(search_term: postcode,
-                                                                 country: country)
-        potential_address_matches.first
+      def potential_address_matches
+        @address_match_gateway.query(search_term: postcode,
+                                     country: country)
       end
     end
   end
