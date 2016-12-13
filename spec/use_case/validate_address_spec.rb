@@ -69,5 +69,9 @@ describe PostcodeValidation::UseCase::ValidateAddress do
     let(:postcode) { 'N1 0ED' }
     let(:country) { 'GB' }
     it { expect(subject[:valid?]).to be_truthy }
+    context 'and the postcode is lowercase' do
+      let(:postcode) { 'n1 0ed' }
+      it { expect(subject[:valid?]).to be_truthy }
+    end
   end
 end
