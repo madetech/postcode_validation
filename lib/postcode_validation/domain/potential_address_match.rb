@@ -6,7 +6,7 @@ module PostcodeValidation
       end
 
       def postcode_matches?(postcode)
-        letters_and_numbers_only(text).include?(letters_and_numbers_only(postcode))
+        letters_and_numbers_only(text).include?(letters_and_numbers_only(postcode.upcase))
       end
 
       attr_reader :text
