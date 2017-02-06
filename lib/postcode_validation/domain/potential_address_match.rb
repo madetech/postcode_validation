@@ -9,7 +9,7 @@ module PostcodeValidation
       def postcode_matches?(postcode)
         normalised_postcode = letters_and_numbers_only(postcode.upcase)
 
-        text_includes?(normalised_postcode) or description_includes?(normalised_postcode)
+        text_includes?(normalised_postcode) || description_includes?(normalised_postcode)
       end
 
       attr_reader :text, :description
