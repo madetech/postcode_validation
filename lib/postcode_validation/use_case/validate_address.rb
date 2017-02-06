@@ -27,7 +27,7 @@ module PostcodeValidation
         matches = potential_address_matches
         return false if matches.first.nil?
 
-        matches.map { |address| return true if address.postcode_matches? postcode }
+        matches.each { |address| return true if address.postcode_matches? postcode }
         false
       end
 
