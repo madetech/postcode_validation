@@ -10,6 +10,7 @@ describe PostcodeValidation::Gateway::PCAPotentialAddressMatch do
     it do
       VCR.use_cassette('PCA-address-matching') do
         expect(subject.first.text).to eq('SE1 0SW')
+        expect(subject.first.description).to eq('Southwark Street, London - 45 Addresses')
       end
     end
   end

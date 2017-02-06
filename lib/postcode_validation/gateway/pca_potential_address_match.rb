@@ -14,7 +14,8 @@ module PostcodeValidation
         response.map do |row|
           raise PCARequestError, error_message(row) if row.key?('Error')
 
-          PostcodeValidation::Domain::PotentialAddressMatch.new(text: row['Text'])
+          PostcodeValidation::Domain::PotentialAddressMatch.new(text: row['Text'],
+                                                                description: row['Description'])
         end
       end
 

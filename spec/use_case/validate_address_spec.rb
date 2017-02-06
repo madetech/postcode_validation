@@ -26,7 +26,10 @@ describe PostcodeValidation::UseCase::ValidateAddress do
   end
 
   context 'given one potential address match' do
-    let(:potential_address_matches) { [PostcodeValidation::Domain::PotentialAddressMatch.new(text: text)] }
+    let(:potential_address_matches) do
+      [PostcodeValidation::Domain::PotentialAddressMatch.new(text: text,
+                                                             description: '')]
+    end
 
     context 'and the country is NL' do
       let(:country) { 'NL' }
@@ -62,8 +65,10 @@ describe PostcodeValidation::UseCase::ValidateAddress do
   context 'given two matches and the first is not exact' do
     let(:potential_address_matches) do
       [
-        PostcodeValidation::Domain::PotentialAddressMatch.new(text: 'N10, Danesgate House, 49 Clasketgate'),
-        PostcodeValidation::Domain::PotentialAddressMatch.new(text: 'N1 0ED')
+        PostcodeValidation::Domain::PotentialAddressMatch.new(text: 'N10, Danesgate House, 49 Clasketgate',
+                                                              description: '5 Addresses'),
+        PostcodeValidation::Domain::PotentialAddressMatch.new(text: 'N1 0ED',
+                                                              description: '10 Addresses')
       ]
     end
     let(:postcode) { 'N1 0ED' }
@@ -73,5 +78,19 @@ describe PostcodeValidation::UseCase::ValidateAddress do
       let(:postcode) { 'n1 0ed' }
       it { expect(subject[:valid?]).to be_truthy }
     end
+  end
+
+  context 'given two matches with the postcode contained the description field' do
+    let(:potential_address_matches) do
+      [
+        PostcodeValidation::Domain::PotentialAddressMatch.new(text: 'Welgelegenstraat',
+                                                              description: '2012JC Haarlem - 13 Addresses'),
+        PostcodeValidation::Domain::PotentialAddressMatch.new(text: 'Spijkermanslaan',
+                                                              description: '2012CJ Haarlem - 39 Addresses')
+      ]
+    end
+    let(:postcode) { '2012 JC' }
+    let(:country) { 'NL' }
+    it { expect(subject[:valid?]).to be_truthy }
   end
 end
