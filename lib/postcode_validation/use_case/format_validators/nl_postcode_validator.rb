@@ -1,6 +1,4 @@
-class NLPostcodeValidator
-  def valid? postcode
-    validation = /(NL-)?(\d{4})\s*([A-Z]{2})/ =~ postcode
-    validation.nil? ? false : true
-  end
+require_relative 'regex_validator'
+class NLPostcodeValidator < RegexValidator
+  REGEX = /(NL-)?(\d{4})\s*([A-Z]{2})/
 end
