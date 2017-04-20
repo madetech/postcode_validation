@@ -3,6 +3,7 @@ module PostcodeValidation
     require_relative 'format_validator'
     class ValidateAddress
       def initialize(address_match_gateway:, logger: nil)
+        @format_validator = FormatValidator.new
         @address_match_gateway = address_match_gateway
         @logger = logger
       end
@@ -39,7 +40,7 @@ module PostcodeValidation
       end
 
       def invalid_postcode_format?
-        validator = FormatValidator.build(country)
+        validator = @format_validator.for(country)
         !validator.valid?(postcode)
       end
     end

@@ -4,7 +4,7 @@ require_relative 'format_validators/gb_postcode_validator'
 require_relative 'format_validators/fr_postcode_validator'
 
 class FormatValidator
-   def self.build country
+   def for country
      case country
      when 'NL'
        NLPostcodeValidator.new
