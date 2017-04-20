@@ -11,10 +11,16 @@ module PostcodeValidation
       def execute(postcode:, country:)
         @postcode = postcode
         @country = country
-        { valid?: valid_postcode? }
+        return { valid?: false, reason: 'invalid_format' } if invalid_postcode_format?
+        matches = potential_address_matches
+        return { valid?: false, reason: 'no_matches' } if matches.first.nil?
+        matches.each do |address|
+          return { valid?: true, reason: 'valid_postcode' } if address.postcode_matches? postcode
+        end
+        { valid?: false, reason: 'no_matches' }
       rescue PostcodeValidation::Error::RequestError => e
         on_error(e)
-        { valid?: true }
+        { valid?: true, reason: 'unable_to_reach_service' }
       end
 
       private
@@ -23,15 +29,6 @@ module PostcodeValidation
 
       def on_error(e)
         logger.error(e) unless logger.nil?
-      end
-
-      def valid_postcode?
-        return false if invalid_postcode_format?
-        matches = potential_address_matches
-        return false if matches.first.nil?
-
-        matches.each { |address| return true if address.postcode_matches? postcode }
-        false
       end
 
       def potential_address_matches
