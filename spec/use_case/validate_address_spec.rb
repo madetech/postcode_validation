@@ -47,7 +47,7 @@ describe PostcodeValidation::UseCase::ValidateAddress do
       context 'when there are extreme formatting differences in the postcode' do
         let(:text) { '6423 ZA' }
         let(:postcode) { '6423-Z A ' }
-        it { expect(subject[:valid?]).to be_truthy }
+        it { expect(subject[:valid?]).to be_falsey }
       end
     end
 
@@ -92,5 +92,39 @@ describe PostcodeValidation::UseCase::ValidateAddress do
     let(:postcode) { '2012 JC' }
     let(:country) { 'NL' }
     it { expect(subject[:valid?]).to be_truthy }
+  end
+
+  context 'given an invalid postcode format' do
+    let(:potential_address_matches) do
+      [PostcodeValidation::Domain::PotentialAddressMatch.new(text: text,
+                                                             description: '')]
+    end
+    context 'and the country is NL' do
+      let(:country) { 'NL' }
+      let(:text) { '3584 EG' }
+      let(:postcode) { '3584 E' }
+      it { expect(subject[:valid?]).to be_falsey }
+    end
+
+    context 'and the country is UK' do
+      let(:country) { 'GB' }
+      let(:text) { 'SE10SW' }
+      let(:postcode) { 'SE10-SW' }
+      it { expect(subject[:valid?]).to be_falsey }
+    end
+
+    context 'and the country is FR' do
+      let(:country) { 'FR' }
+      let(:text) { 'F-12345' }
+      let(:postcode) { 'F-12345Y' }
+      it { expect(subject[:valid?]).to be_falsey }
+    end
+
+    context 'and the country is BE' do
+      let(:country) { 'BE' }
+      let(:text) { '1234' }
+      let(:postcode) { '123A' }
+      it { expect(subject[:valid?]).to be_falsey }
+    end
   end
 end
