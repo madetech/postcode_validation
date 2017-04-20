@@ -1,5 +1,6 @@
 module PostcodeValidation
   module UseCase
+    require_relative 'format_validator'
     class ValidateAddress
       def initialize(address_match_gateway:, logger: nil)
         @address_match_gateway = address_match_gateway
@@ -38,25 +39,8 @@ module PostcodeValidation
       end
 
       def invalid_postcode_format?
-        downcase_country = country.downcase
-        regex = send("#{downcase_country}_postcode_regex")
-        !regex.match? postcode
-      end
-
-      def nl_postcode_regex
-        /(NL-)?(\d{4})\s*([A-Z]{2})/
-      end
-
-      def gb_postcode_regex
-        /(?i)([A-Z]{1,2}[0-9]{1,2}[A-Z]?)\s*([0-9][A-Z]{2})/
-      end
-
-      def fr_postcode_regex
-        /^(F-)?((2[A|B])|[0-9]{2})[0-9]{3}$/
-      end
-
-      def be_postcode_regex
-        /^[1-9]{1}[0-9]{3}$/
+        validator = FormatValidator.build(country)
+        !validator.valid?(postcode)
       end
     end
   end
