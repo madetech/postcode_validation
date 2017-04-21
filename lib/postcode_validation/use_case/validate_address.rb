@@ -10,11 +10,11 @@ module PostcodeValidation
       end
 
       def execute(postcode:, country:)
-        ensure_country(country)
-        ensure_postcode_format(postcode, country)
+        check_country(country)
+        check_postcode_format(postcode, country)
         result = matched_addresses(postcode, country)
 
-        ensure_results(result)
+        check_matched_addresses(result)
 
         result_payload(result, postcode)
       rescue PostcodeValidation::Error::RequestError => e
@@ -29,7 +29,7 @@ module PostcodeValidation
         return { valid?: false, reason: @errors } unless @errors.empty?
 
         result.each do |address|
-          return { valid?: true, reason: 'valid_postcode' } if address.postcode_matches? postcode
+          return { valid?: true, reason: ['valid_postcode'] } if address.postcode_matches? postcode
         end
       end
 
@@ -42,15 +42,15 @@ module PostcodeValidation
                                      country: country)
       end
 
-      def ensure_results(result)
+      def check_matched_addresses(result)
         @errors << 'no_matches' if result.first.nil?
       end
 
-      def ensure_country(country)
+      def check_country(country)
         @errors << 'no_country_provided' if country.nil?
       end
 
-      def ensure_postcode_format(postcode, country)
+      def check_postcode_format(postcode, country)
         return if country.nil?
         validator = @format_validator.for(country)
         @errors << 'invalid_format' if !validator.valid?(postcode)
@@ -58,7 +58,7 @@ module PostcodeValidation
 
       def gracefully_handle_error(error)
         on_error(error)
-        { valid?: true, reason: 'unable_to_reach_service' }
+        { valid?: true, reason: ['unable_to_reach_service'] }
       end
     end
   end

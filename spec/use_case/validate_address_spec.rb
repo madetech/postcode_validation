@@ -38,7 +38,7 @@ describe PostcodeValidation::UseCase::ValidateAddress do
         let(:text) { '6423 ZA' }
         let(:postcode) { '6423ZA' }
         it { expect(subject[:valid?]).to be_truthy }
-        it { expect(subject[:reason]).to eq('valid_postcode') }
+        it { expect(subject[:reason]).to eq(['valid_postcode']) }
       end
       context 'when the postcode contains formatting differences' do
         let(:text) { '6423 ZA' }
