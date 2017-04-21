@@ -6,46 +6,59 @@ module PostcodeValidation
         @format_validator = FormatValidator.new
         @address_match_gateway = address_match_gateway
         @logger = logger
+        @errors = []
       end
 
       def execute(postcode:, country:)
-        @postcode = postcode
-        @country = country
-        validate_postcode_and_country_format
-        matches = potential_address_matches
-        @errors << 'no_matches' if matches.first.nil?
-        return { valid?: false, reason: @errors } unless @errors.empty?
-        matches.each do |address|
-          return { valid?: true, reason: 'valid_postcode' } if address.postcode_matches? postcode
-        end
+        ensure_country(country)
+        ensure_postcode_format(postcode, country)
+        result = matched_addresses(postcode, country)
+
+        ensure_results(result)
+
+        result_payload(result, postcode)
       rescue PostcodeValidation::Error::RequestError => e
-        on_error(e)
-        { valid?: true, reason: 'unable_to_reach_service' }
+        gracefully_handle_error(e)
       end
 
       private
 
       attr_reader :address_match_gateway, :logger, :postcode, :country
 
+      def result_payload(result, postcode)
+        return { valid?: false, reason: @errors } unless @errors.empty?
+
+        result.each do |address|
+          return { valid?: true, reason: 'valid_postcode' } if address.postcode_matches? postcode
+        end
+      end
+
       def on_error(e)
         logger.error(e) unless logger.nil?
       end
 
-      def potential_address_matches
+      def matched_addresses(postcode, country)
         @address_match_gateway.query(search_term: postcode,
                                      country: country)
       end
 
-      def invalid_postcode_format?
-        return if country.nil?
-        validator = @format_validator.for(country)
-        !validator.valid?(postcode)
+      def ensure_results(result)
+        @errors << 'no_matches' if result.first.nil?
       end
 
-      def validate_postcode_and_country_format
-        @errors = []
+      def ensure_country(country)
         @errors << 'no_country_provided' if country.nil?
-        @errors << 'invalid_format' if invalid_postcode_format?
+      end
+
+      def ensure_postcode_format(postcode, country)
+        return if country.nil?
+        validator = @format_validator.for(country)
+        @errors << 'invalid_format' if !validator.valid?(postcode)
+      end
+
+      def gracefully_handle_error(error)
+        on_error(error)
+        { valid?: true, reason: 'unable_to_reach_service' }
       end
     end
   end
