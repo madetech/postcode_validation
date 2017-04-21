@@ -11,13 +11,14 @@ module PostcodeValidation
       def execute(postcode:, country:)
         @postcode = postcode
         @country = country
-        return { valid?: false, reason: 'invalid_format' } if invalid_postcode_format?
+        errors = []
+        errors << 'invalid_format' if invalid_postcode_format?
         matches = potential_address_matches
-        return { valid?: false, reason: 'no_matches' } if matches.first.nil?
+        errors << 'no_matches' if matches.first.nil?
+        return { valid?: false, reason: errors } unless errors.empty?
         matches.each do |address|
           return { valid?: true, reason: 'valid_postcode' } if address.postcode_matches? postcode
         end
-        { valid?: false, reason: 'no_matches' }
       rescue PostcodeValidation::Error::RequestError => e
         on_error(e)
         { valid?: true, reason: 'unable_to_reach_service' }

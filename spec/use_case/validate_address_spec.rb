@@ -106,7 +106,7 @@ describe PostcodeValidation::UseCase::ValidateAddress do
       it { expect(subject[:valid?]).to be_falsey }
 
       it 'returns a message saying the format is invalid' do
-        expect(subject[:reason]).to eq('invalid_format')
+        expect(subject[:reason]).to eq(['invalid_format'])
       end
     end
 
