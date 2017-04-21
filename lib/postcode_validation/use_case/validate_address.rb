@@ -1,6 +1,7 @@
+require_relative 'validate_address/format_validator'
+
 module PostcodeValidation
   module UseCase
-    require_relative 'format_validator'
     class ValidateAddress
       def initialize(address_match_gateway:, logger: nil)
         @format_validator = FormatValidator.new
