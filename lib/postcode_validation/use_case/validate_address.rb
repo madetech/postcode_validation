@@ -11,12 +11,10 @@ module PostcodeValidation
       def execute(postcode:, country:)
         @postcode = postcode
         @country = country
-        errors = []
-        errors << 'no_country_provided' if country.nil?
-        errors << 'invalid_format' if invalid_postcode_format?
+        validate_postcode_and_country_format
         matches = potential_address_matches
-        errors << 'no_matches' if matches.first.nil?
-        return { valid?: false, reason: errors } unless errors.empty?
+        @errors << 'no_matches' if matches.first.nil?
+        return { valid?: false, reason: @errors } unless @errors.empty?
         matches.each do |address|
           return { valid?: true, reason: 'valid_postcode' } if address.postcode_matches? postcode
         end
@@ -42,6 +40,12 @@ module PostcodeValidation
         return if country.nil?
         validator = @format_validator.for(country)
         !validator.valid?(postcode)
+      end
+
+      def validate_postcode_and_country_format
+        @errors = []
+        @errors << 'no_country_provided' if country.nil?
+        @errors << 'invalid_format' if invalid_postcode_format?
       end
     end
   end
