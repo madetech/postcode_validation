@@ -131,4 +131,12 @@ describe PostcodeValidation::UseCase::ValidateAddress do
       it { expect(subject[:valid?]).to be_falsey }
     end
   end
+
+  context 'when no country is provided' do
+    let(:potential_address_matches) { [] }
+    let(:postcode) { '3584 EG' }
+    let(:country) { nil }
+    it { expect(subject[:valid?]).to be_falsey }
+    it { expect(subject[:reason]).to include('no_country_provided') }
+  end
 end

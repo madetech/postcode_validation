@@ -12,6 +12,7 @@ module PostcodeValidation
         @postcode = postcode
         @country = country
         errors = []
+        errors << 'no_country_provided' if country.nil?
         errors << 'invalid_format' if invalid_postcode_format?
         matches = potential_address_matches
         errors << 'no_matches' if matches.first.nil?
@@ -38,6 +39,7 @@ module PostcodeValidation
       end
 
       def invalid_postcode_format?
+        return if country.nil?
         validator = @format_validator.for(country)
         !validator.valid?(postcode)
       end
