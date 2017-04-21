@@ -6,42 +6,59 @@ module PostcodeValidation
         @format_validator = FormatValidator.new
         @address_match_gateway = address_match_gateway
         @logger = logger
+        @errors = []
       end
 
       def execute(postcode:, country:)
-        @postcode = postcode
-        @country = country
-        { valid?: valid_postcode? }
+        check_country(country)
+        check_postcode_format(postcode, country)
+        result = matched_addresses(postcode, country)
+
+        check_matched_addresses(result)
+
+        result_payload(result, postcode)
       rescue PostcodeValidation::Error::RequestError => e
-        on_error(e)
-        { valid?: true }
+        gracefully_handle_error(e)
       end
 
       private
 
       attr_reader :address_match_gateway, :logger, :postcode, :country
 
+      def result_payload(result, postcode)
+        return { valid?: false, reason: @errors } unless @errors.empty?
+
+        result.each do |address|
+          return { valid?: true, reason: ['valid_postcode'] } if address.postcode_matches? postcode
+        end
+      end
+
       def on_error(e)
         logger.error(e) unless logger.nil?
       end
 
-      def valid_postcode?
-        return false if invalid_postcode_format?
-        matches = potential_address_matches
-        return false if matches.first.nil?
-
-        matches.each { |address| return true if address.postcode_matches? postcode }
-        false
-      end
-
-      def potential_address_matches
+      def matched_addresses(postcode, country)
         @address_match_gateway.query(search_term: postcode,
                                      country: country)
       end
 
-      def invalid_postcode_format?
+      def check_matched_addresses(result)
+        @errors << 'no_matches' if result.first.nil?
+      end
+
+      def check_country(country)
+        @errors << 'no_country_provided' if country.nil?
+      end
+
+      def check_postcode_format(postcode, country)
+        return if country.nil?
         validator = @format_validator.for(country)
-        !validator.valid?(postcode)
+        @errors << 'invalid_format' if !validator.valid?(postcode)
+      end
+
+      def gracefully_handle_error(error)
+        on_error(error)
+        { valid?: true, reason: ['unable_to_reach_service'] }
       end
     end
   end

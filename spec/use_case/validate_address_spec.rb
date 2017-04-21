@@ -38,6 +38,7 @@ describe PostcodeValidation::UseCase::ValidateAddress do
         let(:text) { '6423 ZA' }
         let(:postcode) { '6423ZA' }
         it { expect(subject[:valid?]).to be_truthy }
+        it { expect(subject[:reason]).to eq(['valid_postcode']) }
       end
       context 'when the postcode contains formatting differences' do
         let(:text) { '6423 ZA' }
@@ -104,6 +105,10 @@ describe PostcodeValidation::UseCase::ValidateAddress do
       let(:text) { '3584 EG' }
       let(:postcode) { '3584 E' }
       it { expect(subject[:valid?]).to be_falsey }
+
+      it 'returns a message saying the format is invalid' do
+        expect(subject[:reason]).to eq(['invalid_format'])
+      end
     end
 
     context 'and the country is UK' do
@@ -126,5 +131,13 @@ describe PostcodeValidation::UseCase::ValidateAddress do
       let(:postcode) { '123A' }
       it { expect(subject[:valid?]).to be_falsey }
     end
+  end
+
+  context 'when no country is provided' do
+    let(:potential_address_matches) { [] }
+    let(:postcode) { '3584 EG' }
+    let(:country) { nil }
+    it { expect(subject[:valid?]).to be_falsey }
+    it { expect(subject[:reason]).to include('no_country_provided') }
   end
 end
