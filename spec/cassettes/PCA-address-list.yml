@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://services.postcodeanywhere.co.uk/PostcodeAnywhere/Interactive/Find/1.1/json.ws?Country=GB&Filter=None&Key=FAKEKEY&SearchTerm=SE1%200SW
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - text/html
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      Records:
+      - '45'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Tue, 25 Apr 2017 10:01:16 GMT
+      Content-Length:
+      - '964'
+    body:
+      encoding: ASCII-8BIT
+      string: "[{\"Id\":\"27521284.00\",\"StreetAddress\":\"A J Wealth Management
+        Ltd\",\"Place\":\"138-140 Southwark Street London SE1\"},\r\n{\"Id\":\"53929787.00\",\"StreetAddress\":\"Abbott
+        Mead Vickers Group Ltd\",\"Place\":\"90 Southwark Street London SE1\"},\r\n{\"Id\":\"21440182.00\",\"StreetAddress\":\"Bankside
+        Sandwich Bar\",\"Place\":\"142A Southwark Street London SE1\"},\r\n{\"Id\":\"54310700.00\",\"StreetAddress\":\"Circa
+        London\",\"Place\":\"The Pavilion 118 Southwark Street London SE1\"},\r\n{\"Id\":\"54238565.00\",\"StreetAddress\":\"Code
+        Worldwide Ltd\",\"Place\":\"90 Southwark Street London SE1\"},\r\n{\"Id\":\"21440168.00\",\"StreetAddress\":\"Coin
+        Furniture Ltd\",\"Place\":\"The Pavilion 118 Southwark Street London SE1\"},\r\n{\"Id\":\"21440181.00\",\"StreetAddress\":\"Danas
+        News\",\"Place\":\"142 Southwark Street London SE1\"},\r\n{\"Id\":\"21440162.00\",\"StreetAddress\":\"Edwards
+        Commercial Agents Ltd\",\"Place\":\"138-140 Southwark Street London SE1\"},\r\n{\"Id\":\"53914365.00\",\"StreetAddress\":\"Fleishman
+        Hillard Group Ltd\",\"Place\":\"90 Southwark Street London SE1\"},\r\n{\"Id\":\"51029904.00\",\"StreetAddress\":\"Franks
+        Cafe\",\"Place\":\"132 Southwark Street London SE1\"},\r\n{\"Id\":\"54384570.00\",\"StreetAddress\":\"Grid
+        Architects\",\"Place\":\"128 Southwark Street London SE1\"},\r\n{\"Id\":\"53929789.00\",\"StreetAddress\":\"Hall
+        & Partners Ltd\",\"Place\":\"90 Southwark Street London SE1\"},\r\n{\"Id\":\"53835361.00\",\"StreetAddress\":\"Ketchum\",\"Place\":\"90
+        Southwark Street London SE1\"},\r\n{\"Id\":\"54633662.00\",\"StreetAddress\":\"Lineup
+        Systems Ltd\",\"Place\":\"128 Southwark Street London SE1\"},\r\n{\"Id\":\"21440174.00\",\"StreetAddress\":\"Lins
+        Restaurant & Bar\",\"Place\":\"134 Southwark Street London SE1\"},\r\n{\"Id\":\"54284042.00\",\"StreetAddress\":\"Made
+        Tech\",\"Place\":\"136 Southwark Street London SE1\"},\r\n{\"Id\":\"54567663.00\",\"StreetAddress\":\"Manning
+        Gottlieb\",\"Place\":\"90 Southwark Street London SE1\"},\r\n{\"Id\":\"52761531.00\",\"StreetAddress\":\"Marks
+        & Spencer plc\",\"Place\":\"90A Southwark Street London SE1\"},\r\n{\"Id\":\"54048009.00\",\"StreetAddress\":\"Me
+        & Dave Ltd\",\"Place\":\"The Pavilion 118 Southwark Street London SE1\"},\r\n{\"Id\":\"21440193.00\",\"StreetAddress\":\"Mother
+        Tongue Ltd\",\"Place\":\"90 Southwark Street London SE1\"},\r\n{\"Id\":\"53375141.00\",\"StreetAddress\":\"Native
+        Land\",\"Place\":\"The Pavilion 118 Southwark Street London SE1\"},\r\n{\"Id\":\"53142839.00\",\"StreetAddress\":\"Natwest\",\"Place\":\"Unit
+        18 100 Southwark Street London SE1\"},\r\n{\"Id\":\"52784039.00\",\"StreetAddress\":\"Oliver
+        Bonas Ltd\",\"Place\":\"Unit 16 100 Southwark Street London SE1\"},\r\n{\"Id\":\"53847128.00\",\"StreetAddress\":\"Promise
+        Communispace\",\"Place\":\"90 Southwark Street London SE1\"},\r\n{\"Id\":\"21440188.00\",\"StreetAddress\":\"Proximity
+        London\",\"Place\":\"90 Southwark Street London SE1\"},\r\n{\"Id\":\"54456797.00\",\"StreetAddress\":\"Race
+        Interiors Ltd\",\"Place\":\"132 Southwark Street London SE1\"},\r\n{\"Id\":\"54161164.00\",\"StreetAddress\":\"Rapp
+        UK Ltd\",\"Place\":\"90 Southwark Street London SE1\"},\r\n{\"Id\":\"54267634.00\",\"StreetAddress\":\"Redwood
+        Publishing Ltd\",\"Place\":\"90 Southwark Street London SE1\"},\r\n{\"Id\":\"53929678.00\",\"StreetAddress\":\"Rocket\",\"Place\":\"90
+        Southwark Street London SE1\"},\r\n{\"Id\":\"21440180.00\",\"StreetAddress\":\"Soapbox
+        Communications\",\"Place\":\"128 Southwark Street London SE1\"},\r\n{\"Id\":\"52488232.00\",\"StreetAddress\":\"Southwark
+        Gents Hairdressers\",\"Place\":\"136B Southwark Street London SE1\"},\r\n{\"Id\":\"54426813.00\",\"StreetAddress\":\"State
+        of Flux Ltd\",\"Place\":\"128 Southwark Street London SE1\"},\r\n{\"Id\":\"51301504.00\",\"StreetAddress\":\"T
+        B W A\",\"Place\":\"90-100 Southwark Street London SE1\"},\r\n{\"Id\":\"54705105.00\",\"StreetAddress\":\"Tbwa
+        Worldhealth\",\"Place\":\"90-100 Southwark Street London SE1\"},\r\n{\"Id\":\"54428974.00\",\"StreetAddress\":\"The
+        Beanstalk Group\",\"Place\":\"90 Southwark Street London SE1\"},\r\n{\"Id\":\"52475347.00\",\"StreetAddress\":\"They
+        Did It\",\"Place\":\"132 Southwark Street London SE1\"},\r\n{\"Id\":\"53955686.00\",\"StreetAddress\":\"Togorun\",\"Place\":\"90
+        Southwark Street London SE1\"},\r\n{\"Id\":\"54484014.00\",\"StreetAddress\":\"Tortilla
+        Mexican Grill\",\"Place\":\"106 Southwark Street London SE1\"},\r\n{\"Id\":\"52784042.00\",\"StreetAddress\":\"W
+        H Smith Ltd\",\"Place\":\"Unit 15 100 Southwark Street London SE1\"},\r\n{\"Id\":\"54310679.00\",\"StreetAddress\":\"Unit
+        17 100 Southwark Street\",\"Place\":\"London SE1\"},\r\n{\"Id\":\"52475351.00\",\"StreetAddress\":\"Flat
+        3 132 Southwark Street\",\"Place\":\"London SE1\"},\r\n{\"Id\":\"52475350.00\",\"StreetAddress\":\"Flat
+        4 132 Southwark Street\",\"Place\":\"London SE1\"},\r\n{\"Id\":\"21440164.00\",\"StreetAddress\":\"Flat
+        A 134 Southwark Street\",\"Place\":\"London SE1\"},\r\n{\"Id\":\"21440165.00\",\"StreetAddress\":\"Flat
+        B 134 Southwark Street\",\"Place\":\"London SE1\"},\r\n{\"Id\":\"21440166.00\",\"StreetAddress\":\"Flat
+        C 134 Southwark Street\",\"Place\":\"London SE1\"}]\r\n"
+    http_version:
+  recorded_at: Tue, 25 Apr 2017 10:01:16 GMT
+recorded_with: VCR 3.0.3
