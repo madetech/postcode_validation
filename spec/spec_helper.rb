@@ -5,7 +5,6 @@ Dotenv.load('.env')
 require 'vcr'
 require 'webmock'
 require 'postcode_validation'
-require 'pry'
 
 VCR.configure do |c|
   c.hook_into :webmock
