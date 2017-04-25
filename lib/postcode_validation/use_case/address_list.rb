@@ -18,7 +18,7 @@ module PostcodeValidation
 
       private
 
-      attr_reader :address_match_gateway, :logger, :postcode, :country
+      attr_reader :address_match_gateway, :logger
 
       def result_payload(result, postcode)
         result.map do |address|
