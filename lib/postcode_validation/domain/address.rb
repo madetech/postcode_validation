@@ -1,21 +1,12 @@
 module PostcodeValidation
   module Domain
     class Address
-      def initialize(address_row)
-        @address_row = address_row
+      def initialize(street_address:, place:)
+        @street_address = street_address
+        @place = place
       end
 
-      def street_address
-        address_row.fetch('StreetAddress')
-      end
-
-      def place
-        address_row.fetch('Place')
-      end
-
-      private
-
-      attr_reader :address_row
+      attr_reader :street_address, :place
     end
   end
 end
