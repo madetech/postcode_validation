@@ -22,7 +22,8 @@ module PostcodeValidation
 
       def result_payload(result, postcode)
         result.map do |address|
-          PostcodeValidation::Domain::Address.new(address)
+          PostcodeValidation::Domain::Address.new(street_address: address['StreetAddress'],
+                                                  place: address['Place'])
         end
       end
 
@@ -32,7 +33,7 @@ module PostcodeValidation
 
       def matched_addresses(postcode, country)
         @address_list_gateway.query(search_term: postcode,
-                                     country: country)
+                                    country: country)
       end
     end
   end
