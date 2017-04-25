@@ -30,7 +30,7 @@ module PostcodeValidation
         return { valid?: false, reason: @errors } unless @errors.empty?
 
         result.map do |address|
-          PostcodeValidation::Domain::AddressList.new(address)
+          PostcodeValidation::Domain::Address.new(address)
         end
       end
 

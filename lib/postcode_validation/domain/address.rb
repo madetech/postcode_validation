@@ -1,6 +1,6 @@
 module PostcodeValidation
   module Domain
-    class AddressList
+    class Address
       def initialize(address_row)
         @address_row = address_row
       end
