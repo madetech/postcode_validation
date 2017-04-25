@@ -29,10 +29,6 @@ module PostcodeValidation
         JSON.parse(self.class.get('/Capture/Interactive/Find/v1.00/json.ws', lookup_parameters(country, search_term)).body)
       end
 
-      def address_list_for_postcode(country, search_term)
-        JSON.parse(self.class.get('/PostcodeAnywhere/Interactive/Find/1.1/json.ws', lookup_parameters(country, search_term)).body)
-      end
-
       def lookup_parameters(country, search_term)
         {
           query: {
