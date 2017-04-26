@@ -9,9 +9,9 @@ module PostcodeValidation
       end
 
       def execute(postcode:, country:)
-        result = matched_addresses(postcode, country)
+        addresses = matched_addresses(postcode, country)
 
-        result_payload(result, postcode)
+        formatted(addresses)
       rescue PostcodeValidation::Error::RequestError => e
         log_error(e)
       end
@@ -20,10 +20,9 @@ module PostcodeValidation
 
       attr_reader :address_match_gateway, :logger
 
-      def result_payload(result, postcode)
-        result.map do |address|
-          PostcodeValidation::Domain::Address.new(street_address: address[:StreetAddress],
-                                                  place: address[:Place])
+      def formatted(addresses)
+        addresses.map do |address|
+          { street_address: address.street_address, place: address.place }
         end
       end
 
