@@ -22,8 +22,8 @@ module PostcodeValidation
 
       def result_payload(result, postcode)
         result.map do |address|
-          PostcodeValidation::Domain::Address.new(street_address: address['StreetAddress'],
-                                                  place: address['Place'])
+          PostcodeValidation::Domain::Address.new(street_address: address[:StreetAddress],
+                                                  place: address[:Place])
         end
       end
 
