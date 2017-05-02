@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://services.postcodeanywhere.co.uk/Capture/Interactive/Find/v1.00/json.ws?Countries=UK&Filter=PostCode&Key=FAKEKEY&Text=SE1%200SW
+    uri: https://services.postcodeanywhere.co.uk/Capture/Interactive/Find/v1.00/json.ws?Countries=UK&Key=FAKEKEY&Text=SE1%200SW
     body:
       encoding: US-ASCII
       string: ''
@@ -43,6 +43,6 @@ http_interactions:
       string: "[{\"Error\":\"1002\",\"Description\":\"Text or Container Invalid\",\"Cause\":\"The
         Text or Container parameter was not recognised.\",\"Resolution\":\"Check the
         documentation for valid options.\"}]\r\n"
-    http_version: 
+    http_version:
   recorded_at: Tue, 06 Dec 2016 12:16:40 GMT
 recorded_with: VCR 3.0.3

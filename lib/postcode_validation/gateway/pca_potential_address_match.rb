@@ -40,7 +40,7 @@ module PostcodeValidation
       end
 
       def filter_by_postcodes(response)
-        response.select { |row| row['Type'] == 'Postcode' }
+        response.select { |row| row['Type'] != 'Address' }
       end
     end
   end
