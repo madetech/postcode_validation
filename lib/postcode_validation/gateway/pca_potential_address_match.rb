@@ -34,8 +34,7 @@ module PostcodeValidation
           query: {
             Key: KEY,
             Countries: country,
-            Text: search_term,
-            Filter: 'PostCode'
+            Text: search_term
           }
         }
       end
