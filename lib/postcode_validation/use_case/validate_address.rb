@@ -32,6 +32,8 @@ module PostcodeValidation
         result.each do |address|
           return { valid?: true, reason: ['valid_postcode'] } if address.postcode_matches? postcode
         end
+
+        { valid?: false, reason: ['no_postcode_matches_found'] }
       end
 
       def on_error(e)
