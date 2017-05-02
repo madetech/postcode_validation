@@ -10,8 +10,8 @@ module PostcodeValidation
 
       def query(search_term:, country:)
         response = find_postcode(country, search_term)
-
-        response.map do |row|
+        postcode_matches = filter_by_postcodes(response)
+        postcode_matches.map do |row|
           raise PCARequestError, error_message(row) if row.key?('Error')
 
           PostcodeValidation::Domain::PotentialAddressMatch.new(text: row['Text'],
@@ -34,10 +34,13 @@ module PostcodeValidation
           query: {
             Key: KEY,
             Countries: country,
-            Text: search_term,
-            Filter: 'PostCode'
+            Text: search_term
           }
         }
+      end
+
+      def filter_by_postcodes(response)
+        response.select { |row| row['Type'] == 'Postcode' }
       end
     end
   end
