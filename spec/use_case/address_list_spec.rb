@@ -2,7 +2,6 @@ describe PostcodeValidation::UseCase::AddressList do
   let(:address_list_gateway) do
     double(query: address_list_response)
   end
-
   subject do
     described_class.new(address_list_gateway: address_list_gateway)
       .execute(postcode: postcode, country: country)
