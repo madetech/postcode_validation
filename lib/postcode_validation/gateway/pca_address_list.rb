@@ -20,17 +20,16 @@ module PostcodeValidation
 
       def address_payload(row, country, search_term)
         if row['Type'] == 'Address'
-          PostcodeValidation::Domain::Address.new(street_address: formatted_response(row))
+          PostcodeValidation::Domain::Address.new(
+            street_address: row['Description'],
+            place: row['Text']
+          )
         elsif row['Type'] == 'Postcode'
           PostcodeValidation::Gateway::PCAPostcodeToAddresses.new(
             search_term: search_term,
             country: country
           ).execute
         end
-      end
-
-      def formatted_response(row)
-        "#{row['Text']}, #{row['Description']}"
       end
 
       def error_message(row)

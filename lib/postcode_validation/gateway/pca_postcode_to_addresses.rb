@@ -13,17 +13,17 @@ module PostcodeValidation
 
       def execute
         postcode_to_street_addresses.map do |row|
-          PostcodeValidation::Domain::Address.new(street_address: formatted_response(row))
+          # The PCA API seems to have these reversed, correct them here
+          PostcodeValidation::Domain::Address.new(
+            street_address: row['Place'],
+            place: row['StreetAddress']
+          )
         end
       end
 
       private
 
       attr_reader :search_term, :country
-
-      def formatted_response(row)
-        "#{row['StreetAddress']}, #{row['Place']}"
-      end
 
       def postcode_to_street_addresses
         JSON.parse(

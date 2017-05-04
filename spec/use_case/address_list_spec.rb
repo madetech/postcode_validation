@@ -8,11 +8,19 @@ describe PostcodeValidation::UseCase::AddressList do
   end
 
   context 'given a valid postcode and country' do
-    let(:address_list_response) { [PostcodeValidation::Domain::Address.new(street_address: 'Southwark Street')] }
+    let(:address_list_response) do
+        [
+          PostcodeValidation::Domain::Address.new(
+            street_address: 'Southwark Street',
+            place: '136'
+          )
+        ]
+    end
     let(:postcode) { 'SE10SW' }
     let(:country) { 'GB' }
     it 'returns a list of addresses' do
       expect(subject.first[:street_address]).to eq('Southwark Street')
+      expect(subject.first[:place]).to eq('136')
     end
   end
 end
