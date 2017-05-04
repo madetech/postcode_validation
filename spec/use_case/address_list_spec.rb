@@ -9,8 +9,7 @@ describe PostcodeValidation::UseCase::AddressList do
   end
 
   context 'given a valid postcode and country' do
-    let(:address_list_response) { [PostcodeValidation::Domain::Address.new(street_address: 'Southwark Street'),
-                                   PostcodeValidation::Domain::Address.new(street_address: 'Southwark Street')] }
+    let(:address_list_response) { [PostcodeValidation::Domain::Address.new(street_address: 'Southwark Street')] }
     let(:postcode) { 'SE10SW' }
     let(:country) { 'GB' }
     it 'returns a list of addresses' do
