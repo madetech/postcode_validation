@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://services.postcodeanywhere.co.uk/Capture/Interactive/Find/1.0/json.ws?Countries=US&Key=FAKEKEY&Text=CA90210
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - text/html
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      Records:
+      - '10'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Thu, 04 May 2017 12:38:19 GMT
+      Content-Length:
+      - '471'
+    body:
+      encoding: ASCII-8BIT
+      string: "[{\"Id\":\"US|US|ENG|CA\",\"Type\":\"State\",\"Text\":\"CA\",\"Highlight\":\"0-2\",\"Description\":\"158365213
+        Addresses\"},\r\n{\"Id\":\"US|US|A|Z220135477|90210|2390\",\"Type\":\"Address\",\"Text\":\"2390
+        W Pico Blvd Unit 90210\",\"Highlight\":\"22-27;12-14\",\"Description\":\"Los
+        Angeles CA 90006\"},\r\n{\"Id\":\"US|US|A|Z220275352|90210|7435\",\"Type\":\"Address\",\"Text\":\"7435
+        N Figueroa St Unit 90210\",\"Highlight\":\"24-29;12-14\",\"Description\":\"Los
+        Angeles CA 90041\"},\r\n{\"Id\":\"US|US|A|Z220278461|90210|5930\",\"Type\":\"Address\",\"Text\":\"5930
+        N Figueroa St Unit 90210\",\"Highlight\":\"24-29;12-14\",\"Description\":\"Los
+        Angeles CA 90042\"},\r\n{\"Id\":\"US|US|A|Z224645345|90210|819\",\"Type\":\"Address\",\"Text\":\"819
+        W Washington Blvd Unit 90210\",\"Highlight\":\"27-32;12-14\",\"Description\":\"Los
+        Angeles CA 90015\"},\r\n{\"Id\":\"US|US|A|Z220165649|90210|4960\",\"Type\":\"Address\",\"Text\":\"4960
+        W Washington Blvd Unit 90210\",\"Highlight\":\"28-33;12-14\",\"Description\":\"Los
+        Angeles CA 90016\"},\r\n{\"Id\":\"US|US|A|Z223552401|90210|2300\",\"Type\":\"Address\",\"Text\":\"2300
+        Redondo Ave Unit 90210\",\"Highlight\":\"22-27;11-13\",\"Description\":\"Long
+        Beach CA 90809\"},\r\n{\"Id\":\"US|US|A|Z223553189|90210|15421\",\"Type\":\"Address\",\"Text\":\"15421
+        E Gale Ave Unit 90210\",\"Highlight\":\"22-27;17-19\",\"Description\":\"City
+        of Industry CA 91715\"},\r\n{\"Id\":\"US|US|A|Z220201596|90210|11420\",\"Type\":\"Address\",\"Text\":\"11420
+        Santa Monica Blvd Unit 90210\",\"Highlight\":\"29-34;12-14\",\"Description\":\"Los
+        Angeles CA 90025\"},\r\n{\"Id\":\"US|US|A|Z223909204|90210|1221\",\"Type\":\"Address\",\"Text\":\"1221
+        State St Unit 90210\",\"Highlight\":\"19-24;14-16\",\"Description\":\"Santa
+        Barbara CA 93190\"}]\r\n"
+    http_version:
+  recorded_at: Thu, 04 May 2017 12:38:19 GMT
+recorded_with: VCR 3.0.3

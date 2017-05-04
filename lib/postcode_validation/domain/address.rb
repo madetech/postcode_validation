@@ -1,12 +1,11 @@
 module PostcodeValidation
   module Domain
     class Address
-      def initialize(street_address:, place:)
+      def initialize(street_address:)
         @street_address = street_address
-        @place = place
       end
 
-      attr_reader :street_address, :place
+      attr_reader :street_address
     end
   end
 end

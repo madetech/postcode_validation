@@ -9,33 +9,48 @@ module PostcodeValidation
       base_uri 'https://services.postcodeanywhere.co.uk'
 
       def query(search_term:, country:)
-        response = address_list_for_postcode(country, search_term)
-
-        response.map do |row|
+        address_list_for_postcode(country, search_term).map do |row|
           raise PCARequestError, error_message(row) if row.key?('Error')
 
-          PostcodeValidation::Domain::Address.new(street_address: row['StreetAddress'],
-                                                  place: row['Place'])
-        end
+          address_payload(row, country, search_term)
+        end.compact.flatten
       end
 
       private
+
+      def address_payload(row, country, search_term)
+        if row['Type'] == 'Address'
+          PostcodeValidation::Domain::Address.new(street_address: formatted_response(row))
+        elsif row['Type'] == 'Postcode'
+          PostcodeValidation::Gateway::PCAPostcodeToAddresses.new(
+            search_term: search_term,
+            country: country
+          ).execute
+        end
+      end
+
+      def formatted_response(row)
+        "#{row['Text']}, #{row['Description']}"
+      end
 
       def error_message(row)
         "#{row['Error']} #{row['Cause']} #{row['Resolution']}"
       end
 
       def address_list_for_postcode(country, search_term)
-        JSON.parse(self.class.get('/PostcodeAnywhere/Interactive/Find/1.1/json.ws', lookup_parameters(country, search_term)).body)
+        JSON.parse(
+          self.class.get(
+            '/Capture/Interactive/Find/1.0/json.ws', lookup_parameters(country, search_term)
+          ).body
+        )
       end
 
       def lookup_parameters(country, search_term)
         {
           query: {
-            Country: country,
+            Countries: country,
             Key: KEY,
-            SearchTerm: search_term,
-            Filter: 'None'
+            Text: search_term
           }
         }
       end
