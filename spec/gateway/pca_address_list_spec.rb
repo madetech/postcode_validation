@@ -8,11 +8,8 @@ describe PostcodeValidation::Gateway::PCAAddressList do
       VCR.use_cassette('PCA-address-list') do
         subject = described_class.new.query(search_term: search_term, country: country)
 
-        expect(subject[0].place).to eq('A J Wealth Management Ltd')
-        expect(subject[0].street_address).to eq('138-140 Southwark Street London SE1')
-
-        expect(subject[1].place).to eq('Abbott Mead Vickers Group Ltd')
-        expect(subject[1].street_address).to eq('90 Southwark Street London SE1')
+        expect(subject[0].street_address).to eq('A J Wealth Management Ltd, 138-140 Southwark Street London SE1')
+        expect(subject[1].street_address).to eq('Abbott Mead Vickers Group Ltd, 90 Southwark Street London SE1')
       end
     end
 
@@ -23,11 +20,8 @@ describe PostcodeValidation::Gateway::PCAAddressList do
       VCR.use_cassette('PCA-address-list-international') do
         subject = described_class.new.query(search_term: search_term, country: country)
 
-        expect(subject[0].place).to eq('2390 W Pico Blvd Unit 90210')
-        expect(subject[0].street_address).to eq('Los Angeles CA 90006')
-
-        expect(subject[1].place).to eq('7435 N Figueroa St Unit 90210')
-        expect(subject[1].street_address).to eq('Los Angeles CA 90041')
+        expect(subject[0].street_address).to eq('2390 W Pico Blvd Unit 90210, Los Angeles CA 90006')
+        expect(subject[1].street_address).to eq('7435 N Figueroa St Unit 90210, Los Angeles CA 90041')
       end
     end
   end

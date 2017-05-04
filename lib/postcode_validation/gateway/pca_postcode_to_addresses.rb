@@ -13,11 +13,7 @@ module PostcodeValidation
 
       def execute
         postcode_to_street_addresses.map do |row|
-          # The PCA API seems to have these reversed, correct them here
-          PostcodeValidation::Domain::Address.new(
-            street_address: row['Place'],
-            place: row['StreetAddress']
-          )
+          PostcodeValidation::Domain::Address.new(street_address: "#{row['StreetAddress']}, #{row['Place']}")
         end
       end
 
