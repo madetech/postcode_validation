@@ -22,10 +22,7 @@ module PostcodeValidation
 
       def formatted(addresses)
         addresses.map do |address|
-          {
-            street_address: address.street_address,
-            place: address.place
-          }
+          { street_address: address.street_address, place: address.place }
         end
       end
 
