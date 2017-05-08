@@ -42,7 +42,8 @@ module PostcodeValidation
           query: {
             Countries: country,
             Key: KEY,
-            Text: search_term
+            Text: search_term,
+            Limit: 8
           }
         }
       end
