@@ -8,8 +8,8 @@ module PostcodeValidation
         @logger = logger
       end
 
-      def execute(postcode:, country:)
-        addresses = matched_addresses(postcode, country)
+      def execute(postcode:, country:, more_results_id: nil)
+        addresses = matched_addresses(postcode, country, more_results_id)
 
         formatted(addresses)
       rescue PostcodeValidation::Error::RequestError => e
@@ -22,7 +22,10 @@ module PostcodeValidation
 
       def formatted(addresses)
         addresses.map do |address|
-          { street_address: address.street_address }
+          {
+            street_address: address.street_address,
+            more_results_id: address.more_results_id
+          }
         end
       end
 
@@ -30,9 +33,10 @@ module PostcodeValidation
         logger.error(e) unless logger.nil?
       end
 
-      def matched_addresses(postcode, country)
+      def matched_addresses(postcode, country, more_results_id)
         @address_list_gateway.query(search_term: postcode,
-                                    country: country)
+                                    country: country,
+                                    more_results_id: more_results_id)
       end
     end
   end
