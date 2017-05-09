@@ -5,7 +5,7 @@ describe PostcodeValidation::UseCase::AddressList do
 
   subject do
     described_class.new(address_list_gateway: address_list_gateway)
-      .execute(postcode: postcode, country: country, more_results_id: 'SomeId')
+      .execute(postcode: postcode, country: country)
   end
 
   context 'given a valid postcode and country' do
@@ -22,7 +22,6 @@ describe PostcodeValidation::UseCase::AddressList do
 
     it 'returns a list of addresses' do
       expect(subject.first[:street_address]).to eq('136 Southwark Street - 46 Adresses, MadeTech')
-      expect(subject.first[:more_results_id]).to eq('SomeId')
     end
   end
 end

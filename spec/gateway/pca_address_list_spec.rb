@@ -9,7 +9,6 @@ describe PostcodeValidation::Gateway::PCAAddressList do
           )
 
           expect(subject[0].street_address).to eq('Tesco Stores Ltd, 107 Dunton Road, London, SE1 5HG')
-          expect(subject[0].more_results_id).to eq(nil)
         end
       end
     end
@@ -23,7 +22,6 @@ describe PostcodeValidation::Gateway::PCAAddressList do
           )
 
           expect(subject[0].street_address).to eq('7552 Route des Clues, 06440 Peille')
-          expect(subject[0].more_results_id).to eq(nil)
         end
       end
     end
@@ -38,8 +36,7 @@ describe PostcodeValidation::Gateway::PCAAddressList do
             country: 'GB'
           )
 
-          expect(subject[0].street_address).to eq('SE1 0SW, Southwark Street, London - 46 Addresses')
-          expect(subject[0].more_results_id).to eq('GB|RM|ENG|0SW-SE1')
+          expect(subject[0].street_address).to eq('Abbott Mead Vickers Group Ltd, 90 Southwark Street, London, SE1 0SW')
         end
       end
     end
@@ -52,8 +49,7 @@ describe PostcodeValidation::Gateway::PCAAddressList do
             country: 'FR'
           )
 
-          expect(subject[0].street_address).to eq('75020, Paris - 95967 Addresses')
-          expect(subject[0].more_results_id).to eq('FR|TT|FRE|75020')
+          expect(subject[0].street_address).to eq('52 Avenue Gambetta, 20e Arrondissement Paris, 75020 Paris')
         end
       end
     end
@@ -71,7 +67,6 @@ describe PostcodeValidation::Gateway::PCAAddressList do
 
           expect(subject[0].street_address).to eq('Abbott Mead Vickers Group Ltd, 90 Southwark Street, London, SE1 0SW')
           expect(subject[1].street_address).to eq('Code Worldwide Ltd, 90 Southwark Street, London, SE1 0SW')
-          expect(subject[0].more_results_id).to eq(nil)
         end
       end
     end
@@ -86,7 +81,6 @@ describe PostcodeValidation::Gateway::PCAAddressList do
           )
 
           expect(subject[0].street_address).to eq('52 Avenue Gambetta, 20e Arrondissement Paris, 75020 Paris')
-          expect(subject[0].more_results_id).to eq(nil)
         end
       end
     end

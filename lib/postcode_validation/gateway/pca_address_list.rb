@@ -12,8 +12,16 @@ module PostcodeValidation
         address_list_for_postcode(country, search_term, more_results_id).map do |row|
           raise PCARequestError, error_message(row) if row.key?('Error')
 
-          PostcodeValidation::Domain::Address.new(row: row)
-        end
+          if row['Type'] == 'Postcode'
+            self.class.new.query(
+              country: country,
+              search_term: search_term,
+              more_results_id: row['Id']
+            )
+          elsif row['Type'] == 'Address'
+            PostcodeValidation::Domain::Address.new(row: row)
+          end
+        end.flatten
       end
 
       private
