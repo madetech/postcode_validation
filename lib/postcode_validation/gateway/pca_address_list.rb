@@ -8,37 +8,31 @@ module PostcodeValidation
       KEY = ENV['POSTCODE_ANYWHERE_KEY']
       base_uri 'https://services.postcodeanywhere.co.uk'
 
-      def query(search_term:, country:)
-        address_list_for_postcode(country, search_term).map do |row|
+      def query(search_term:, country:, more_results_id: nil)
+        address_list_for_postcode(country, search_term, more_results_id).map do |row|
           raise PCARequestError, error_message(row) if row.key?('Error')
 
-          address_payload(row, country, search_term)
+          PostcodeValidation::Domain::Address.new(row: row)
         end.compact.flatten
       end
 
       private
 
-      def address_payload(row, country, search_term)
-        if row['Type'] == 'Address'
-          PostcodeValidation::Domain::Address.new(street_address: "#{row['Text']}, #{row['Description']}")
-        elsif row['Type'] == 'Postcode'
-          PostcodeValidation::Gateway::PCAPostcodeToAddresses.new(
-            search_term: search_term,
-            country: country
-          ).execute
-        end
-      end
-
       def error_message(row)
         "#{row['Error']} #{row['Cause']} #{row['Resolution']}"
       end
 
-      def address_list_for_postcode(country, search_term)
-        JSON.parse(self.class.get('/Capture/Interactive/Find/1.0/json.ws', lookup_parameters(country, search_term)).body)
+      def address_list_for_postcode(country, search_term, more_results_id)
+        JSON.parse(
+          self.class.get(
+            '/Capture/Interactive/Find/1.00/json.ws',
+            lookup_parameters(country, search_term, more_results_id)
+          ).body
+        )
       end
 
-      def lookup_parameters(country, search_term)
-        {
+      def lookup_parameters(country, search_term, more_results_id)
+        result = {
           query: {
             Countries: country,
             Key: KEY,
@@ -46,6 +40,9 @@ module PostcodeValidation
             Limit: 8
           }
         }
+
+        result[:query].merge!(Container: more_results_id) unless more_results_id.nil?
+        result
       end
     end
   end
