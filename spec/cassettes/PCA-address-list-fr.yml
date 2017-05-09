@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://services.postcodeanywhere.co.uk/Capture/Interactive/Find/1.00/json.ws?Countries=FR&Key=FAKEKEY&Limit=8&Text=7552
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - text/html
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      Records:
+      - '8'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 08 May 2017 16:23:44 GMT
+      Content-Length:
+      - '393'
+    body:
+      encoding: ASCII-8BIT
+      string: "[{\"Id\":\"FR|TT|A|12500000032601|7552\",\"Type\":\"Address\",\"Text\":\"7552
+        Route des Clues\",\"Highlight\":\"0-4\",\"Description\":\"06440 Peille\"},\r\n{\"Id\":\"FR|TT|A|12500000039029|7552\",\"Type\":\"Address\",\"Text\":\"7552
+        All\\u00E9e des Gen\\u00EAts\",\"Highlight\":\"0-4\",\"Description\":\"13960
+        Sausset-les-Pins\"},\r\n{\"Id\":\"FR|TT|A|12500000069993|7552\",\"Type\":\"Address\",\"Text\":\"7552
+        Chemin de Repentance\",\"Highlight\":\"0-4\",\"Description\":\"13100 Aix-en-Provence\"},\r\n{\"Id\":\"FR|TT|A|12500000105043|7552\",\"Type\":\"Address\",\"Text\":\"7552
+        Chemin du Plan de Lorgue\",\"Highlight\":\"0-4\",\"Description\":\"13100 Saint-Marc-Jaumegarde\"},\r\n{\"Id\":\"FR|TT|A|12500000177993|7552\",\"Type\":\"Address\",\"Text\":\"7552
+        Avenue de la Victoire du 8 Mai 1945\",\"Highlight\":\"0-4\",\"Description\":\"83000
+        Toulon\"},\r\n{\"Id\":\"FR|TT|A|12500000881754|7552\",\"Type\":\"Address\",\"Text\":\"7552
+        Route de Cagnes\",\"Highlight\":\"0-4\",\"Description\":\"06610 La Gaude\"},\r\n{\"Id\":\"FR|TT|A|12500003356980|7552\",\"Type\":\"Address\",\"Text\":\"7552
+        Rue Labastidette\",\"Highlight\":\"0-4\",\"Description\":\"46300 Gourdon\"},\r\n{\"Id\":\"FR|TT|A|12500007992659|7552\",\"Type\":\"Address\",\"Text\":\"7552
+        Avenue Alfred Court\",\"Highlight\":\"0-4\",\"Description\":\"47800 Miramont-de-Guyenne\"}]\r\n"
+    http_version:
+  recorded_at: Mon, 08 May 2017 16:23:44 GMT
+recorded_with: VCR 3.0.3

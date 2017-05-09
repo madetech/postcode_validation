@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://services.postcodeanywhere.co.uk/Capture/Interactive/Find/1.00/json.ws?Countries=GB&Key=FAKEKEY&Limit=8&Text=SE15HG
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - text/html
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      Records:
+      - '3'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Tue, 09 May 2017 09:45:35 GMT
+      Content-Length:
+      - '212'
+    body:
+      encoding: ASCII-8BIT
+      string: "[{\"Id\":\"GB|RM|A|21456992\",\"Type\":\"Address\",\"Text\":\"Tesco
+        Stores Ltd, 107 Dunton Road\",\"Highlight\":\";8-11,12-15\",\"Description\":\"London,
+        SE1 5HG\"},\r\n{\"Id\":\"GB|RM|A|50580543\",\"Type\":\"Address\",\"Text\":\"Po
+        Box 62307\",\"Highlight\":\";8-11,12-13,14-15\",\"Description\":\"London,
+        SE1 5GH\"},\r\n{\"Id\":\"GB|RM|A|51318386\",\"Type\":\"Address\",\"Text\":\"Po
+        Box 64506\",\"Highlight\":\";8-11,13-16\",\"Description\":\"London, SE1P 5HG\"}]\r\n"
+    http_version:
+  recorded_at: Tue, 09 May 2017 09:45:36 GMT
+recorded_with: VCR 3.0.3
