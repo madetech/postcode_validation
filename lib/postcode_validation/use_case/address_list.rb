@@ -8,8 +8,8 @@ module PostcodeValidation
         @logger = logger
       end
 
-      def execute(postcode:, country:, more_results_id: nil)
-        addresses = matched_addresses(postcode, country, more_results_id)
+      def execute(postcode:, country:)
+        addresses = matched_addresses(postcode, country)
 
         formatted(addresses)
       rescue PostcodeValidation::Error::RequestError => e
@@ -30,10 +30,9 @@ module PostcodeValidation
         logger.error(e) unless logger.nil?
       end
 
-      def matched_addresses(postcode, country, more_results_id)
+      def matched_addresses(postcode, country)
         @address_list_gateway.query(search_term: postcode,
-                                    country: country,
-                                    more_results_id: more_results_id)
+                                    country: country)
       end
     end
   end
