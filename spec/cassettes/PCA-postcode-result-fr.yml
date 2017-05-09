@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://services.postcodeanywhere.co.uk/Capture/Interactive/Find/1.00/json.ws?Countries=FR&Key=YP32-AU91-EF97-FJ99&Limit=8&Text=75020
+    uri: https://services.postcodeanywhere.co.uk/Capture/Interactive/Find/1.00/json.ws?Countries=FR&Key=FAKEKEY&Limit=8&Text=75020
     body:
       encoding: US-ASCII
       string: ''
@@ -42,6 +42,6 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "[{\"Id\":\"FR|TT|FRE|75020\",\"Type\":\"Postcode\",\"Text\":\"75020\",\"Highlight\":\"0-5\",\"Description\":\"Paris
         - 95967 Addresses\"}]\r\n"
-    http_version: 
+    http_version:
   recorded_at: Mon, 08 May 2017 16:26:03 GMT
 recorded_with: VCR 3.0.3

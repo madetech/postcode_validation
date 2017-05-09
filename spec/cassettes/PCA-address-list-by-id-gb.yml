@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://services.postcodeanywhere.co.uk/Capture/Interactive/Find/1.00/json.ws?Container=GB%7CRM%7CENG%7C0SW-SE1&Countries=GB&Key=YP32-AU91-EF97-FJ99&Limit=8&Text=SE1%200SW
+    uri: https://services.postcodeanywhere.co.uk/Capture/Interactive/Find/1.00/json.ws?Container=GB%7CRM%7CENG%7C0SW-SE1&Countries=GB&Key=FAKEKEY&Limit=8&Text=SE1%200SW
     body:
       encoding: US-ASCII
       string: ''
@@ -128,6 +128,6 @@ http_interactions:
         SE1 0SW\"},\r\n{\"Id\":\"GB|RM|A|21440182\",\"Type\":\"Address\",\"Text\":\"Bankside
         Sandwich Bar, 142A, Southwark Street\",\"Highlight\":\"\",\"Description\":\"London,
         SE1 0SW\"}]\r\n"
-    http_version: 
+    http_version:
   recorded_at: Mon, 08 May 2017 16:22:52 GMT
 recorded_with: VCR 3.0.3

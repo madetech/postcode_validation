@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://services.postcodeanywhere.co.uk/Capture/Interactive/Find/1.00/json.ws?Countries=FR&Key=YP32-AU91-EF97-FJ99&Limit=8&Text=7552
+    uri: https://services.postcodeanywhere.co.uk/Capture/Interactive/Find/1.00/json.ws?Countries=FR&Key=FAKEKEY&Limit=8&Text=7552
     body:
       encoding: US-ASCII
       string: ''
@@ -51,6 +51,6 @@ http_interactions:
         Route de Cagnes\",\"Highlight\":\"0-4\",\"Description\":\"06610 La Gaude\"},\r\n{\"Id\":\"FR|TT|A|12500003356980|7552\",\"Type\":\"Address\",\"Text\":\"7552
         Rue Labastidette\",\"Highlight\":\"0-4\",\"Description\":\"46300 Gourdon\"},\r\n{\"Id\":\"FR|TT|A|12500007992659|7552\",\"Type\":\"Address\",\"Text\":\"7552
         Avenue Alfred Court\",\"Highlight\":\"0-4\",\"Description\":\"47800 Miramont-de-Guyenne\"}]\r\n"
-    http_version: 
+    http_version:
   recorded_at: Mon, 08 May 2017 16:23:44 GMT
 recorded_with: VCR 3.0.3

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://services.postcodeanywhere.co.uk/Capture/Interactive/Find/1.00/json.ws?Countries=GB&Key=YP32-AU91-EF97-FJ99&Limit=8&Text=SE1%200SW
+    uri: https://services.postcodeanywhere.co.uk/Capture/Interactive/Find/1.00/json.ws?Countries=GB&Key=FAKEKEY&Limit=8&Text=SE1%200SW
     body:
       encoding: US-ASCII
       string: ''
@@ -43,6 +43,6 @@ http_interactions:
       string: "[{\"Id\":\"GB|RM|ENG|0SW-SE1\",\"Type\":\"Postcode\",\"Text\":\"SE1
         0SW\",\"Highlight\":\"0-3,4-7\",\"Description\":\"Southwark Street, London
         - 46 Addresses\"}]\r\n"
-    http_version: 
+    http_version:
   recorded_at: Mon, 08 May 2017 16:10:57 GMT
 recorded_with: VCR 3.0.3
