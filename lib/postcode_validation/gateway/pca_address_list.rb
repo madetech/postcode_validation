@@ -13,7 +13,7 @@ module PostcodeValidation
           raise PCARequestError, error_message(row) if row.key?('Error')
 
           PostcodeValidation::Domain::Address.new(row: row)
-        end.compact.flatten
+        end
       end
 
       private
