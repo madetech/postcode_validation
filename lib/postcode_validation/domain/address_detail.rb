@@ -1,37 +1,33 @@
 module PostcodeValidation
   module Domain
     class AddressDetail
-      def initialize(row:)
-        @row = row
-      end
-
-      def address_line_1
-        "https://services.postcodeanywhere.co.uk/Capture/Interactive/Retrieve/1.00/json.ws?Id=#{row['Id']}&Key=#{key}"
+      def initialize(result:)
+        @result = result
       end
 
       def company
-        row['Company']
+        result['Company']
       end
 
       def address_line_1
-        row['Line1']
+        result['Line1']
       end
 
       def address_line_2
-        row['Line2']
+        result['Line2']
       end
 
       def city
-        row['City']
+        result['City']
       end
 
       def country
-        row['CountryName']
+        result['CountryName']
       end
 
       private
 
-      attr_reader :row
+      attr_reader :result
     end
   end
 end

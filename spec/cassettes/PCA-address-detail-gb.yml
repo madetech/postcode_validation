@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://services.postcodeanywhere.co.uk/Capture/Interactive/Retrieve/1.00/json.ws?Id=GB%7CRM%7CA%7C8224138&Key=FAKEKEY
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - text/html
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      Records:
+      - '1'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Fri, 12 May 2017 18:38:29 GMT
+      Content-Length:
+      - '477'
+    body:
+      encoding: ASCII-8BIT
+      string: "[{\"Id\":\"GB|RM|A|8224138\",\"DomesticId\":\"8224138\",\"Language\":\"ENG\",\"LanguageAlternatives\":\"ENG\",\"Department\":\"\",\"Company\":\"\",\"SubBuilding\":\"\",\"BuildingNumber\":\"\",\"BuildingName\":\"755/2\",\"SecondaryStreet\":\"\",\"Street\":\"Ferry
+        Road\",\"Block\":\"\",\"Neighbourhood\":\"\",\"District\":\"\",\"City\":\"Edinburgh\",\"Line1\":\"755/2
+        Ferry Road\",\"Line2\":\"\",\"Line3\":\"\",\"Line4\":\"\",\"Line5\":\"\",\"AdminAreaName\":\"City
+        of Edinburgh\",\"AdminAreaCode\":\"\",\"Province\":\"Midlothian\",\"ProvinceName\":\"Midlothian\",\"ProvinceCode\":\"\",\"PostalCode\":\"EH4
+        2UB\",\"CountryName\":\"United Kingdom\",\"CountryIso2\":\"GB\",\"CountryIso3\":\"GBR\",\"CountryIsoNumber\":\"826\",\"SortingNumber1\":\"19116\",\"SortingNumber2\":\"\",\"Barcode\":\"(EH42UB3B3)\",\"POBoxNumber\":\"\",\"Label\":\"755/2
+        Ferry Road\\nEDINBURGH\\nEH4 2UB\\nUNITED KINGDOM\",\"Type\":\"Residential\",\"DataLevel\":\"Premise\",\"Field1\":\"\",\"Field2\":\"\",\"Field3\":\"\",\"Field4\":\"\",\"Field5\":\"\",\"Field6\":\"\",\"Field7\":\"\",\"Field8\":\"\",\"Field9\":\"\",\"Field10\":\"\",\"Field11\":\"\",\"Field12\":\"\",\"Field13\":\"\",\"Field14\":\"\",\"Field15\":\"\",\"Field16\":\"\",\"Field17\":\"\",\"Field18\":\"\",\"Field19\":\"\",\"Field20\":\"\"}]\r\n"
+    http_version:
+  recorded_at: Fri, 12 May 2017 18:38:28 GMT
+recorded_with: VCR 3.0.3

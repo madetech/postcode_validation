@@ -8,6 +8,7 @@ module PostcodeValidation
   require 'postcode_validation/error/request_error'
   require 'postcode_validation/gateway/pca_potential_address_match'
   require 'postcode_validation/gateway/pca_address_list'
+  require 'postcode_validation/gateway/pca_address_detail'
   require 'postcode_validation/use_case/validate_address'
   require 'postcode_validation/use_case/address_list'
   require 'postcode_validation/use_case/address_detail_retriever'

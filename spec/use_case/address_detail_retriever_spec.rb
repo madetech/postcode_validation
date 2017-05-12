@@ -9,7 +9,7 @@ describe PostcodeValidation::UseCase::AddressDetailRetriever do
   end
 
   context 'given a valid postcode and country' do
-    row = {
+    result = {
       'Company' => 'MadeTech',
       'Line1' => '136 Southwark Street',
       'Line2' => 'Southwark',
@@ -17,7 +17,7 @@ describe PostcodeValidation::UseCase::AddressDetailRetriever do
       'CountryName' => 'United Kingdom'
     }
 
-    let(:address_list_response) { PostcodeValidation::Domain::AddressDetail.new(row: row) }
+    let(:address_list_response) { PostcodeValidation::Domain::AddressDetail.new(result: result) }
     let(:postcode) { 'SE10SW' }
     let(:country) { 'GB' }
 
