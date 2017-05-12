@@ -8,20 +8,7 @@ describe PostcodeValidation::Gateway::PCAAddressList do
             country: 'GB'
           )
 
-          expect(subject[0].street_address).to eq('Tesco Stores Ltd, 107 Dunton Road, London, SE1 5HG')
-        end
-      end
-    end
-
-    context 'FR' do
-      it 'returns the final results' do
-        VCR.use_cassette('PCA-address-list-fr') do
-          subject = described_class.new.query(
-            search_term: '7552',
-            country: 'FR'
-          )
-
-          expect(subject[0].street_address).to eq('7552 Route des Clues, 06440 Peille')
+          expect(subject[0].url).to eq('https://services.postcodeanywhere.co.uk/Capture/Interactive/Retrieve/1.00/json.ws?Id=GB|RM|A|21456992&Key=FAKEKEY')
         end
       end
     end
@@ -36,7 +23,7 @@ describe PostcodeValidation::Gateway::PCAAddressList do
             country: 'GB'
           )
 
-          expect(subject[0].street_address).to eq('Abbott Mead Vickers Group Ltd, 90 Southwark Street, London, SE1 0SW')
+          expect(subject[0].url).to eq('https://services.postcodeanywhere.co.uk/Capture/Interactive/Retrieve/1.00/json.ws?Id=GB|RM|A|53929787&Key=FAKEKEY')
         end
       end
     end
@@ -49,7 +36,7 @@ describe PostcodeValidation::Gateway::PCAAddressList do
             country: 'FR'
           )
 
-          expect(subject[0].street_address).to eq('52 Avenue Gambetta, 20e Arrondissement Paris, 75020 Paris')
+          expect(subject[0].url).to eq('https://services.postcodeanywhere.co.uk/Capture/Interactive/Retrieve/1.00/json.ws?Id=FR|TT|A|12500000945356|52&Key=FAKEKEY')
         end
       end
     end
@@ -65,8 +52,7 @@ describe PostcodeValidation::Gateway::PCAAddressList do
             more_results_id: 'GB|RM|ENG|0SW-SE1'
           )
 
-          expect(subject[0].street_address).to eq('Abbott Mead Vickers Group Ltd, 90 Southwark Street, London, SE1 0SW')
-          expect(subject[1].street_address).to eq('Code Worldwide Ltd, 90 Southwark Street, London, SE1 0SW')
+          expect(subject[0].url).to eq('https://services.postcodeanywhere.co.uk/Capture/Interactive/Retrieve/1.00/json.ws?Id=GB|RM|A|53929787&Key=FAKEKEY')
         end
       end
     end
@@ -80,7 +66,7 @@ describe PostcodeValidation::Gateway::PCAAddressList do
             more_results_id: 'FR|TT|FRE|75020'
           )
 
-          expect(subject[0].street_address).to eq('52 Avenue Gambetta, 20e Arrondissement Paris, 75020 Paris')
+          expect(subject[0].url).to eq('https://services.postcodeanywhere.co.uk/Capture/Interactive/Retrieve/1.00/json.ws?Id=FR|TT|A|12500000945356|52&Key=FAKEKEY')
         end
       end
     end
