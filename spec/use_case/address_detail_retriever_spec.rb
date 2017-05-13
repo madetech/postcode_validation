@@ -25,6 +25,7 @@ describe PostcodeValidation::UseCase::AddressDetailRetriever do
       expect(subject[:address_line_1]).to eq('136 Southwark Street')
       expect(subject[:address_line_2]).to eq('Southwark')
       expect(subject[:city]).to eq('London')
+      expect(subject[:company]).to eq('MadeTech')
       expect(subject[:country]).to eq('United Kingdom')
     end
   end
