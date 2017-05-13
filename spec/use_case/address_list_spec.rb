@@ -10,18 +10,19 @@ describe PostcodeValidation::UseCase::AddressList do
 
   context 'given a valid postcode and country' do
     row = {
-      'Text' => '136 Southwark Street - 46 Adresses',
-      'Description' => 'MadeTech',
+      'Text' => 'Tesco Stores Ltd, 107 Dunton Road',
+      'Description' => 'London, SE1 5HG',
       'Type' => 'Postcode',
       'Id' => 'SomeId'
     }
 
-    let(:address_list_response) { [PostcodeValidation::Domain::Address.new(row: row)] }
+    let(:address_list_response) { [PostcodeValidation::Domain::Address.new(row: row, key: 'some_key')] }
     let(:postcode) { 'SE10SW' }
     let(:country) { 'GB' }
 
     it 'returns a list of addresses' do
-      expect(subject.first[:street_address]).to eq('136 Southwark Street - 46 Adresses, MadeTech')
+      expect(subject.first[:id]).to eq('SomeId')
+      expect(subject.first[:label]).to eq('Tesco Stores Ltd, 107 Dunton Road, London, SE1 5HG')
     end
   end
 end

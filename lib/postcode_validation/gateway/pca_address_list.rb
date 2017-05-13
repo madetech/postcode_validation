@@ -19,7 +19,7 @@ module PostcodeValidation
               more_results_id: row['Id']
             )
           elsif row['Type'] == 'Address'
-            PostcodeValidation::Domain::Address.new(row: row)
+            PostcodeValidation::Domain::Address.new(row: row, key: KEY)
           end
         end.flatten
       end

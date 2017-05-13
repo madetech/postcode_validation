@@ -1,17 +1,22 @@
 module PostcodeValidation
   module Domain
     class Address
-      def initialize(row:)
+      def initialize(row:, key:)
         @row = row
+        @key = key
       end
 
-      def street_address
+      def label
         "#{row['Text']}, #{row['Description']}"
+      end
+
+      def id
+        row['Id']
       end
 
       private
 
-      attr_reader :row
+      attr_reader :row, :key
     end
   end
 end
