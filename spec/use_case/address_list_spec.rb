@@ -10,8 +10,8 @@ describe PostcodeValidation::UseCase::AddressList do
 
   context 'given a valid postcode and country' do
     row = {
-      'Text' => '136 Southwark Street - 46 Adresses',
-      'Description' => 'MadeTech',
+      'Text' => 'Tesco Stores Ltd, 107 Dunton Road',
+      'Description' => 'London, SE1 5HG',
       'Type' => 'Postcode',
       'Id' => 'SomeId'
     }
@@ -22,6 +22,7 @@ describe PostcodeValidation::UseCase::AddressList do
 
     it 'returns a list of addresses' do
       expect(subject.first[:url]).to eq('https://services.postcodeanywhere.co.uk/Capture/Interactive/Retrieve/1.00/json.ws?Id=SomeId&Key=some_key')
+      expect(subject.first[:label]).to eq('Tesco Stores Ltd, 107 Dunton Road, London, SE1 5HG')
     end
   end
 end

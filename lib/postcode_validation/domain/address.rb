@@ -6,6 +6,10 @@ module PostcodeValidation
         @key = key
       end
 
+      def label
+        "#{row['Text']}, #{row['Description']}"
+      end
+
       def url
         "https://services.postcodeanywhere.co.uk/Capture/Interactive/Retrieve/1.00/json.ws?Id=#{row['Id']}&Key=#{key}"
       end
