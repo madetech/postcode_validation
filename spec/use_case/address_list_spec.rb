@@ -21,7 +21,7 @@ describe PostcodeValidation::UseCase::AddressList do
     let(:country) { 'GB' }
 
     it 'returns a list of addresses' do
-      expect(subject.first[:url]).to eq('https://services.postcodeanywhere.co.uk/Capture/Interactive/Retrieve/1.00/json.ws?Id=SomeId&Key=some_key')
+      expect(subject.first[:id]).to eq('SomeId')
       expect(subject.first[:label]).to eq('Tesco Stores Ltd, 107 Dunton Road, London, SE1 5HG')
     end
   end
