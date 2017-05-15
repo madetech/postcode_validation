@@ -21,7 +21,7 @@ module PostcodeValidation
           elsif row['Type'] == 'Address'
             PostcodeValidation::Domain::Address.new(row: row, key: KEY)
           end
-        end.flatten
+        end.compact.flatten
       end
 
       private
