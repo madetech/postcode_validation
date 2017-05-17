@@ -2,6 +2,7 @@ require_relative 'format_validators/nl_postcode_validator'
 require_relative 'format_validators/be_postcode_validator'
 require_relative 'format_validators/gb_postcode_validator'
 require_relative 'format_validators/fr_postcode_validator'
+require_relative 'format_validators/no_op_postcode_validator'
 
 module PostcodeValidation
   module UseCase
@@ -17,6 +18,8 @@ module PostcodeValidation
               FormatValidators::BEPostcodeValidator.new
             when 'FR'
               FormatValidators::FRPostcodeValidator.new
+            else
+              FormatValidators::NoOpPostcodeValidator.new
           end
         end
       end
