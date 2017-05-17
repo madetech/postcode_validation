@@ -14,7 +14,8 @@ describe PostcodeValidation::UseCase::AddressDetailRetriever do
       'Line1' => '136 Southwark Street',
       'Line2' => 'Southwark',
       'City' => 'London',
-      'CountryName' => 'United Kingdom'
+      'CountryName' => 'United Kingdom',
+      'PostalCode' => 'SE10SW'
     }
 
     let(:address_list_response) { PostcodeValidation::Domain::AddressDetail.new(result: result) }
@@ -27,6 +28,7 @@ describe PostcodeValidation::UseCase::AddressDetailRetriever do
       expect(subject[:city]).to eq('London')
       expect(subject[:company]).to eq('MadeTech')
       expect(subject[:country]).to eq('United Kingdom')
+      expect(subject[:postcode]).to eq('SE10SW')
     end
   end
 end
