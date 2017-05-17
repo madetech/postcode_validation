@@ -61,6 +61,16 @@ describe PostcodeValidation::UseCase::ValidateAddress do
         it { expect(subject[:valid?]).to be_truthy }
       end
     end
+
+    context 'and the country is in IN' do
+      let(:country) { 'IN' }
+
+      context 'when a country bypasses the local regex validation' do
+        let(:postcode) { '411007' }
+        let(:text) { '411007' }
+        it { expect(subject[:valid?]).to be_truthy }
+      end
+    end
   end
 
   context 'given two matches and the first is not exact' do
