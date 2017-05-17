@@ -26,7 +26,8 @@ module PostcodeValidation
           address_line_2: address.address_line_2,
           company: address.company,
           city: address.city,
-          country: address.country
+          country: address.country,
+          postcode: address.postcode
         }
       end
 

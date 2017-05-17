@@ -25,6 +25,10 @@ module PostcodeValidation
         result['CountryName']
       end
 
+      def postcode
+        result['PostalCode']
+      end
+
       private
 
       attr_reader :result
