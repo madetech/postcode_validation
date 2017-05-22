@@ -25,4 +25,11 @@ describe PostcodeValidation::UseCase::AddressList do
       expect(subject.first[:label]).to eq('Tesco Stores Ltd, 107 Dunton Road, London, SE1 5HG')
     end
   end
+
+  context 'when no country is provided' do
+    let(:address_list_response) { [] }
+    let(:postcode) { '3584 EG' }
+    let(:country) { nil }
+    it { expect(subject[:errors]).to include('no_country_provided') }
+  end
 end
