@@ -7,4 +7,14 @@ describe PostcodeValidation::UseCase::ValidateAddress::FormatValidator do
       expect(described_class.new.for(country).valid?(postcode)).to be true
     end
   end
+
+  context 'SG' do
+    it 'validates SG postcodes' do
+      country = 'SG'
+      postcode = '486051'
+
+      expect(described_class.new.for(country).valid?(postcode)).to be true
+    end
+  end
 end
+
