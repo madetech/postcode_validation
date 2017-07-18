@@ -14,7 +14,9 @@ module PostcodeValidation
         check_country(country)
 
         if country == 'SG'
-          if check_postcode_format(postcode_without_spaces(postcode), country)
+          check_postcode_format(postcode_without_spaces(postcode), country)
+
+          if @errors.empty?
             return { valid?: true, reason: ['valid_postcode'] }
           end
         end
