@@ -12,6 +12,11 @@ module PostcodeValidation
 
       def execute(postcode:, country:)
         check_country(country)
+
+        if country == 'SG'
+          return check_postcode_format(postcode_without_spaces(postcode), country)
+        end
+
         check_postcode_format(postcode, country)
         result = matched_addresses(postcode, country)
 
@@ -62,6 +67,10 @@ module PostcodeValidation
       def gracefully_handle_error(error)
         on_error(error)
         { valid?: true, reason: ['unable_to_reach_service'] }
+      end
+
+      def postcode_without_spaces(postcode)
+        postcode.gsub(' ', '')
       end
     end
   end
