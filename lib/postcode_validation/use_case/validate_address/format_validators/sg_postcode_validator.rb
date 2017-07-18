@@ -5,7 +5,7 @@ module PostcodeValidation
     class ValidateAddress
       module FormatValidators
         class SGPostcodeValidator < RegexValidator
-          REGEX = /\d{6}$/
+          REGEX = /^\d{6}$/
         end
       end
     end
