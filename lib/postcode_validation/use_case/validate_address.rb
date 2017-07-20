@@ -13,13 +13,13 @@ module PostcodeValidation
       def execute(postcode:, country:)
         check_country(country)
 
-        if country == 'SG'
+         if country == 'SG'
           check_postcode_format(postcode_without_spaces(postcode), country)
 
-          if @errors.empty?
-            return { valid?: true, reason: ['valid_postcode'] }
-          end
-        end
+           if @errors.empty?
+             return { valid?: true, reason: ['valid_postcode'] }
+           end
+         end
 
         check_postcode_format(postcode, country)
         result = matched_addresses(postcode, country)
