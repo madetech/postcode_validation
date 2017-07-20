@@ -7,19 +7,14 @@ module PostcodeValidation
         @format_validator = FormatValidator.new
         @address_match_gateway = address_match_gateway
         @logger = logger
-        @errors = []
       end
 
       def execute(postcode:, country:)
+        @errors = []
         check_country(country)
 
-        if country == 'SG'
-          check_postcode_format(postcode_without_spaces(postcode), country)
-
-          if @errors.empty?
-            return { valid?: true, reason: ['valid_postcode'] }
-          end
-        end
+        postcode = postcode_without_spaces(postcode)
+        return the_postcode_is_valid if use_local_validator?(country) && format_valid_for_country?(country, postcode)
 
         check_postcode_format(postcode, country)
         result = matched_addresses(postcode, country)
@@ -39,7 +34,7 @@ module PostcodeValidation
         return { valid?: false, reason: @errors } unless @errors.empty?
 
         result.each do |address|
-          return { valid?: true, reason: ['valid_postcode'] } if address.postcode_matches? postcode
+          return the_postcode_is_valid if address.postcode_matches? postcode
         end
 
         { valid?: false, reason: ['no_postcode_matches_found'] }
@@ -64,8 +59,24 @@ module PostcodeValidation
 
       def check_postcode_format(postcode, country)
         return if country.nil?
+        @errors << 'invalid_format' unless format_valid_for_country?(country, postcode)
+      end
+
+      def format_valid_for_country?(country, postcode)
         validator = @format_validator.for(country)
-        @errors << 'invalid_format' if !validator.valid?(postcode)
+        format_valid?(postcode, validator)
+      end
+
+      def format_valid?(postcode, validator)
+        validator.valid?(postcode)
+      end
+
+      def use_local_validator?(country)
+        format_check_only?(@format_validator.for(country))
+      end
+
+      def format_check_only?(validator)
+        validator.format_check_only?
       end
 
       def gracefully_handle_error(error)
@@ -75,6 +86,10 @@ module PostcodeValidation
 
       def postcode_without_spaces(postcode)
         postcode.gsub(' ', '')
+      end
+
+      def the_postcode_is_valid
+        { valid?: true, reason: ['valid_postcode'] }
       end
     end
   end

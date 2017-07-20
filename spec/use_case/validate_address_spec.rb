@@ -160,6 +160,32 @@ describe PostcodeValidation::UseCase::ValidateAddress do
     end
   end
 
+  context 'given the country is India' do
+    let(:potential_address_matches) { [] }
+    let(:country) { 'IN' }
+
+    context 'and the postcode format is correct' do
+      let(:text) { '612804' }
+      let(:postcode) { '612804' }
+
+      it { expect(subject[:valid?]).to be_truthy }
+    end
+
+    context 'and the postcode format is correct' do
+      let(:text) { '110002' }
+      let(:postcode) { '110002' }
+
+      it { expect(subject[:valid?]).to be_truthy }
+    end
+
+    context 'and the postcode format is incorrect' do
+      let(:text) { '23885' }
+      let(:postcode) { '23885' }
+
+      it { expect(subject[:valid?]).to be_falsey }
+    end
+  end
+
   context 'when no country is provided' do
     let(:potential_address_matches) { [] }
     let(:postcode) { '3584 EG' }
