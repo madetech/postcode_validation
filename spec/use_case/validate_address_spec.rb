@@ -141,6 +141,25 @@ describe PostcodeValidation::UseCase::ValidateAddress do
     end
   end
 
+  context 'given the country is Singapore' do
+    let(:potential_address_matches) { [] }
+    let(:country) { 'SG' }
+
+    context 'and the postcode format is correct' do
+      let(:text) { '238858' }
+      let(:postcode) { '238858' }
+
+      it { expect(subject[:valid?]).to be_truthy }
+    end
+
+    context 'and the postcode format is incorrect' do
+      let(:text) { '23885' }
+      let(:postcode) { '23885' }
+
+      it { expect(subject[:valid?]).to be_falsey }
+    end
+  end
+
   context 'when no country is provided' do
     let(:potential_address_matches) { [] }
     let(:postcode) { '3584 EG' }
