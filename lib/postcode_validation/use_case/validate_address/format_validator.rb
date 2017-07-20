@@ -3,13 +3,14 @@ require_relative 'format_validators/be_postcode_validator'
 require_relative 'format_validators/gb_postcode_validator'
 require_relative 'format_validators/fr_postcode_validator'
 require_relative 'format_validators/sg_postcode_validator'
+require_relative 'format_validators/in_postcode_validator'
 require_relative 'format_validators/no_op_postcode_validator'
 
 module PostcodeValidation
   module UseCase
     class ValidateAddress
       class FormatValidator
-        def for country
+        def for(country)
           case country
             when 'NL'
               FormatValidators::NLPostcodeValidator.new
@@ -21,6 +22,8 @@ module PostcodeValidation
               FormatValidators::FRPostcodeValidator.new
             when 'SG'
               FormatValidators::SGPostcodeValidator.new
+            when 'IN'
+              FormatValidators::INPostcodeValidator.new
             else
               FormatValidators::NoOpPostcodeValidator.new
           end

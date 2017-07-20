@@ -1,14 +1,14 @@
 require_relative 'regex_validator'
-require_relative 'use_external_postcode_validator'
+require_relative 'use_format_check_only'
 
 module PostcodeValidation
   module UseCase
     class ValidateAddress
       module FormatValidators
-        class NoOpPostcodeValidator < RegexValidator
-          include UseExternalPostcodeValidator
+        class INPostcodeValidator < RegexValidator
+          include UseFormatCheckOnly
 
-          REGEX = /.*/
+          REGEX = /^[1-9][0-9]{5}$/
         end
       end
     end
