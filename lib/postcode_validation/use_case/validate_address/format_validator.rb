@@ -6,6 +6,7 @@ require_relative 'format_validators/sg_postcode_validator'
 require_relative 'format_validators/in_postcode_validator'
 require_relative 'format_validators/vn_postcode_validator'
 require_relative 'format_validators/th_postcode_validator'
+require_relative 'format_validators/my_postcode_validator'
 require_relative 'format_validators/no_op_postcode_validator'
 
 module PostcodeValidation
@@ -30,6 +31,8 @@ module PostcodeValidation
               FormatValidators::VNPostcodeValidator.new
             when 'TH'
               FormatValidators::THPostcodeValidator.new
+            when 'MY'
+              FormatValidators::MYPostcodeValidator.new
             else
               FormatValidators::NoOpPostcodeValidator.new
           end
