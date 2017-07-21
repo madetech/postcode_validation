@@ -4,6 +4,7 @@ require_relative 'format_validators/gb_postcode_validator'
 require_relative 'format_validators/fr_postcode_validator'
 require_relative 'format_validators/sg_postcode_validator'
 require_relative 'format_validators/in_postcode_validator'
+require_relative 'format_validators/vn_postcode_validator'
 require_relative 'format_validators/no_op_postcode_validator'
 
 module PostcodeValidation
@@ -24,6 +25,8 @@ module PostcodeValidation
               FormatValidators::SGPostcodeValidator.new
             when 'IN'
               FormatValidators::INPostcodeValidator.new
+            when 'VN'
+              FormatValidators::VNPostcodeValidator.new
             else
               FormatValidators::NoOpPostcodeValidator.new
           end
