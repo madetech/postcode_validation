@@ -145,18 +145,41 @@ describe PostcodeValidation::UseCase::ValidateAddress do
     let(:potential_address_matches) { [] }
     let(:country) { 'SG' }
 
-    context 'and the postcode format is correct' do
+    context 'and the postcode format is valid' do
       let(:text) { '238858' }
       let(:postcode) { '238858' }
 
       it { expect(subject[:valid?]).to be_truthy }
     end
 
-    context 'and the postcode format is incorrect' do
-      let(:text) { '23885' }
-      let(:postcode) { '23885' }
+    context 'and the postcode format is valid' do
+      let(:text) { '236658' }
+      let(:postcode) { '238668' }
 
-      it { expect(subject[:valid?]).to be_falsey }
+      it { expect(subject[:valid?]).to be_truthy }
+    end
+
+    context 'and the postcode format is not valid' do
+      context 'postcode format is not a number' do
+        let(:text) { 'abcdef' }
+        let(:postcode) { 'abcdef' }
+
+        it { expect(subject[:valid?]).to be_falsey }
+      end
+
+      context 'postcode format is too short' do
+        let(:text) { '23665' }
+        let(:postcode) { '23665' }
+
+        it { expect(subject[:valid?]).to be_falsey }
+      end
+
+      context 'postcode format is too long' do
+        let(:text) { '2366534' }
+        let(:postcode) { '2366534' }
+
+        it { expect(subject[:valid?]).to be_falsey }
+      end
     end
   end
 
@@ -164,25 +187,83 @@ describe PostcodeValidation::UseCase::ValidateAddress do
     let(:potential_address_matches) { [] }
     let(:country) { 'IN' }
 
-    context 'and the postcode format is correct' do
+    context 'and the postcode format is valid' do
       let(:text) { '612804' }
       let(:postcode) { '612804' }
 
       it { expect(subject[:valid?]).to be_truthy }
     end
 
-    context 'and the postcode format is correct' do
+    context 'and the postcode format is valid' do
       let(:text) { '110002' }
       let(:postcode) { '110002' }
 
       it { expect(subject[:valid?]).to be_truthy }
     end
 
-    context 'and the postcode format is incorrect' do
-      let(:text) { '23885' }
-      let(:postcode) { '23885' }
+    context 'and the postcode format is not valid' do
+      context 'postcode format is not a number' do
+        let(:text) { 'abcdef' }
+        let(:postcode) { 'abcdef' }
 
-      it { expect(subject[:valid?]).to be_falsey }
+        it { expect(subject[:valid?]).to be_falsey }
+      end
+
+      context 'postcode format is too short' do
+        let(:text) { '23885' }
+        let(:postcode) { '23885' }
+
+        it { expect(subject[:valid?]).to be_falsey }
+      end
+
+      context 'postcode format is too long' do
+        let(:text) { '2388532' }
+        let(:postcode) { '2388532' }
+
+        it { expect(subject[:valid?]).to be_falsey }
+      end
+    end
+  end
+
+  context 'given the country is Vietnam' do
+    let(:potential_address_matches) { [] }
+    let(:country) { 'VN' }
+
+    context 'and the postcode format is valid' do
+      let(:text) { '882983' }
+      let(:postcode) { '882983' }
+
+      it { expect(subject[:valid?]).to be_truthy }
+    end
+
+    context 'and the postcode format is valid' do
+      let(:text) { '238495' }
+      let(:postcode) { '238495' }
+
+      it { expect(subject[:valid?]).to be_truthy }
+    end
+
+    context 'and the postcode is not valid' do
+      context 'postcode format is not a number' do
+        let(:text) { 'abcdef' }
+        let(:postcode) { 'abcdef' }
+
+        it { expect(subject[:valid?]).to be_falsey }
+      end
+
+      context 'postcode format is too short' do
+        let(:text) { '12345' }
+        let(:postcode) { '12345' }
+
+        it { expect(subject[:valid?]).to be_falsey }
+      end
+
+      context 'postcode format is too long' do
+        let(:text) { '1234534' }
+        let(:postcode) { '1234534' }
+
+        it { expect(subject[:valid?]).to be_falsey }
+      end
     end
   end
 
