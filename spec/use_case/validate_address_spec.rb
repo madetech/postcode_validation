@@ -160,21 +160,21 @@ describe PostcodeValidation::UseCase::ValidateAddress do
     end
 
     context 'and the postcode format is not valid' do
-      context 'and the postcode format is not a number' do
+      context 'postcode format is not a number' do
         let(:text) { 'abcdef' }
         let(:postcode) { 'abcdef' }
 
         it { expect(subject[:valid?]).to be_falsey }
       end
 
-      context 'and the postcode format is too short' do
+      context 'postcode format is too short' do
         let(:text) { '23665' }
         let(:postcode) { '23665' }
 
         it { expect(subject[:valid?]).to be_falsey }
       end
 
-      context 'and the postcode format is too long' do
+      context 'postcode format is too long' do
         let(:text) { '2366534' }
         let(:postcode) { '2366534' }
 
@@ -202,21 +202,21 @@ describe PostcodeValidation::UseCase::ValidateAddress do
     end
 
     context 'and the postcode format is not valid' do
-      context 'and the postcode format is not a number' do
+      context 'postcode format is not a number' do
         let(:text) { 'abcdef' }
         let(:postcode) { 'abcdef' }
 
         it { expect(subject[:valid?]).to be_falsey }
       end
 
-      context 'and the postcode format is too short' do
+      context 'postcode format is too short' do
         let(:text) { '23885' }
         let(:postcode) { '23885' }
 
         it { expect(subject[:valid?]).to be_falsey }
       end
 
-      context 'and the postcode format is too long' do
+      context 'postcode format is too long' do
         let(:text) { '2388532' }
         let(:postcode) { '2388532' }
 
