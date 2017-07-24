@@ -435,6 +435,48 @@ describe PostcodeValidation::UseCase::ValidateAddress do
     end
   end
 
+  context 'given the country is Argentina' do
+    let(:potential_address_matches) { [] }
+    let(:country) { 'AR' }
+
+    context 'and the postcode format is valid' do
+      let(:text) { 'a2399akh' }
+      let(:postcode) { 'a2399akh' }
+
+      it { expect(subject[:valid?]).to be_truthy }
+    end
+
+    context 'and the postcode format is valid' do
+      let(:text) { 'f9387ppl' }
+      let(:postcode) { 'f9387ppl' }
+
+      it { expect(subject[:valid?]).to be_truthy }
+    end
+
+    context 'and the postcode is not valid' do
+      context 'postcode format is not a number' do
+        let(:text) { 'abcdf' }
+        let(:postcode) { 'abcdf' }
+
+        it { expect(subject[:valid?]).to be_falsey }
+      end
+
+      context 'postcode format is too short' do
+        let(:text) { 'a1234a' }
+        let(:postcode) { 'a1234a' }
+
+        it { expect(subject[:valid?]).to be_falsey }
+      end
+
+      context 'postcode format is too long' do
+        let(:text) { 'abc12345lsk' }
+        let(:postcode) { 'abc12345lsk' }
+
+        it { expect(subject[:valid?]).to be_falsey }
+      end
+    end
+  end
+
   context 'when no country is provided' do
     let(:potential_address_matches) { [] }
     let(:postcode) { '3584 EG' }

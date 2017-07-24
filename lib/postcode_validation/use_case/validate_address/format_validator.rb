@@ -9,6 +9,7 @@ require_relative 'format_validators/th_postcode_validator'
 require_relative 'format_validators/my_postcode_validator'
 require_relative 'format_validators/es_postcode_validator'
 require_relative 'format_validators/br_postcode_validator'
+require_relative 'format_validators/ar_postcode_validator'
 require_relative 'format_validators/no_op_postcode_validator'
 
 module PostcodeValidation
@@ -39,6 +40,8 @@ module PostcodeValidation
               FormatValidators::ESPostcodeValidator.new
             when 'BR'
               FormatValidators::BRPostcodeValidator.new
+            when 'AR'
+              FormatValidators::ARPostcodeValidator.new
             else
               FormatValidators::NoOpPostcodeValidator.new
           end
