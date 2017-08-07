@@ -8,9 +8,9 @@ describe PostcodeValidation::UseCase::ValidateAddress do
       .execute(postcode: postcode, country: country)
   end
 
-  context 'given the country is Norway' do
+  context 'given the country is Denmark' do
     let(:potential_address_matches) { [] }
-    let(:country) { 'NO' }
+    let(:country) { 'DK' }
 
     context 'and the postcode format is valid' do
       let(:postcode) { '9384' }
@@ -26,21 +26,18 @@ describe PostcodeValidation::UseCase::ValidateAddress do
 
     context 'and the postcode is not valid' do
       context 'postcode format is not a number' do
-
         let(:postcode) { 'abcdf' }
 
         it { expect(subject[:valid?]).to be_falsey }
       end
 
       context 'postcode format is too short' do
-
         let(:postcode) { '123' }
 
         it { expect(subject[:valid?]).to be_falsey }
       end
 
       context 'postcode format is too long' do
-
         let(:postcode) { '12345' }
 
         it { expect(subject[:valid?]).to be_falsey }

@@ -8,40 +8,42 @@ describe PostcodeValidation::UseCase::ValidateAddress do
       .execute(postcode: postcode, country: country)
   end
 
-  context 'given the country is Norway' do
+  context 'given the country is Spain' do
     let(:potential_address_matches) { [] }
-    let(:country) { 'NO' }
+    let(:country) { 'ES' }
 
     context 'and the postcode format is valid' do
-      let(:postcode) { '9384' }
+      let(:text) { '03999' }
+      let(:postcode) { '03999' }
 
       it { expect(subject[:valid?]).to be_truthy }
     end
 
     context 'and the postcode format is valid' do
-      let(:postcode) { '1245' }
+      let(:text) { '28999' }
+      let(:postcode) { '28999' }
 
       it { expect(subject[:valid?]).to be_truthy }
     end
 
     context 'and the postcode is not valid' do
       context 'postcode format is not a number' do
-
+        let(:text) { 'abcdf' }
         let(:postcode) { 'abcdf' }
 
         it { expect(subject[:valid?]).to be_falsey }
       end
 
       context 'postcode format is too short' do
-
-        let(:postcode) { '123' }
+        let(:text) { '1234' }
+        let(:postcode) { '1234' }
 
         it { expect(subject[:valid?]).to be_falsey }
       end
 
       context 'postcode format is too long' do
-
-        let(:postcode) { '12345' }
+        let(:text) { '1234543' }
+        let(:postcode) { '1234543' }
 
         it { expect(subject[:valid?]).to be_falsey }
       end
