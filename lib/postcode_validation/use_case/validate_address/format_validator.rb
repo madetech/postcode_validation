@@ -25,6 +25,7 @@ require_relative 'format_validators/ie_postcode_validator'
 require_relative 'format_validators/hu_postcode_validator'
 require_relative 'format_validators/lk_postcode_validator'
 require_relative 'format_validators/bn_postcode_validator'
+require_relative 'format_validators/kh_postcode_validator'
 
 require_relative 'format_validators/no_op_postcode_validator'
 
@@ -88,6 +89,8 @@ module PostcodeValidation
               FormatValidators::LKPostcodeValidator.new
             when 'BN'
               FormatValidators::BNPostcodeValidator.new
+            when 'KH'
+              FormatValidators::KHPostcodeValidator.new
             else
               FormatValidators::NoOpPostcodeValidator.new
           end
