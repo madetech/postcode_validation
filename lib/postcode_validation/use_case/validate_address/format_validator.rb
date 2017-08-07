@@ -10,6 +10,10 @@ require_relative 'format_validators/my_postcode_validator'
 require_relative 'format_validators/es_postcode_validator'
 require_relative 'format_validators/br_postcode_validator'
 require_relative 'format_validators/ar_postcode_validator'
+require_relative 'format_validators/dk_postcode_validator'
+require_relative 'format_validators/no_postcode_validator'
+require_relative 'format_validators/cn_postcode_validator'
+
 require_relative 'format_validators/no_op_postcode_validator'
 
 module PostcodeValidation
@@ -42,6 +46,12 @@ module PostcodeValidation
               FormatValidators::BRPostcodeValidator.new
             when 'AR'
               FormatValidators::ARPostcodeValidator.new
+            when 'DK'
+              FormatValidators::DKPostcodeValidator.new
+            when 'NO'
+              FormatValidators::NOPostcodeValidator.new
+            when 'CN'
+              FormatValidators::CNPostcodeValidator.new
             else
               FormatValidators::NoOpPostcodeValidator.new
           end
