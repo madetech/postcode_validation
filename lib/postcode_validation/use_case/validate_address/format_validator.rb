@@ -26,6 +26,25 @@ require_relative 'format_validators/hu_postcode_validator'
 require_relative 'format_validators/lk_postcode_validator'
 require_relative 'format_validators/bn_postcode_validator'
 require_relative 'format_validators/kh_postcode_validator'
+require_relative 'format_validators/za_postcode_validator'
+require_relative 'format_validators/ua_postcode_validator'
+require_relative 'format_validators/tr_postcode_validator'
+require_relative 'format_validators/tn_postcode_validator'
+require_relative 'format_validators/ru_postcode_validator'
+require_relative 'format_validators/pl_postcode_validator'
+require_relative 'format_validators/pg_postcode_validator'
+require_relative 'format_validators/om_postcode_validator'
+require_relative 'format_validators/ma_postcode_validator'
+require_relative 'format_validators/lv_postcode_validator'
+require_relative 'format_validators/lt_postcode_validator'
+require_relative 'format_validators/kr_postcode_validator'
+require_relative 'format_validators/hk_postcode_validator'
+require_relative 'format_validators/ee_postcode_validator'
+require_relative 'format_validators/de_postcode_validator'
+require_relative 'format_validators/cz_postcode_validator'
+require_relative 'format_validators/ch_postcode_validator'
+require_relative 'format_validators/at_postcode_validator'
+require_relative 'format_validators/ae_postcode_validator'
 
 require_relative 'format_validators/no_op_postcode_validator'
 
@@ -91,6 +110,46 @@ module PostcodeValidation
               FormatValidators::BNPostcodeValidator.new
             when 'KH'
               FormatValidators::KHPostcodeValidator.new
+            when 'ZA'
+              FormatValidators::ZAPostcodeValidator.new
+            when 'UA'
+              FormatValidators::UAPostcodeValidator.new
+            when 'TR'
+              FormatValidators::TRPostcodeValidator.new
+            when 'TN'
+              FormatValidators::TNPostcodeValidator.new
+            when 'RU'
+              FormatValidators::RUPostcodeValidator.new
+            when 'PL'
+              FormatValidators::PLPostcodeValidator.new
+            when 'PG'
+              FormatValidators::PGPostcodeValidator.new
+            when 'OM'
+              FormatValidators::OMPostcodeValidator.new
+            when 'MA'
+              FormatValidators::MAPostcodeValidator.new
+            when 'LV'
+              FormatValidators::LVPostcodeValidator.new
+            when 'LT'
+              FormatValidators::LTPostcodeValidator.new
+            when 'KR'
+              FormatValidators::KRPostcodeValidator.new
+            when 'HK'
+              FormatValidators::HKPostcodeValidator.new
+            when 'EE'
+              FormatValidators::EEPostcodeValidator.new
+            when 'DE'
+              FormatValidators::DEPostcodeValidator.new
+            when 'CZ'
+              FormatValidators::CZPostcodeValidator.new
+            when 'CH'
+              FormatValidators::CHPostcodeValidator.new
+            when 'BE'
+              FormatValidators::BEPostcodeValidator.new
+            when 'AT'
+              FormatValidators::ATPostcodeValidator.new
+            when 'AE'
+              FormatValidators::AEPostcodeValidator.new
             else
               FormatValidators::NoOpPostcodeValidator.new
           end
