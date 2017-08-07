@@ -14,6 +14,7 @@ require_relative 'format_validators/dk_postcode_validator'
 require_relative 'format_validators/no_postcode_validator'
 require_relative 'format_validators/cn_postcode_validator'
 require_relative 'format_validators/bo_postcode_validator'
+require_relative 'format_validators/la_postcode_validator'
 require_relative 'format_validators/bd_postcode_validator'
 require_relative 'format_validators/mm_postcode_validator'
 
@@ -57,6 +58,8 @@ module PostcodeValidation
               FormatValidators::CNPostcodeValidator.new
             when 'BO'
               FormatValidators::BOPostcodeValidator.new
+            when 'LA'
+              FormatValidators::LAPostcodeValidator.new
             when 'BD'
               FormatValidators::BDPostcodeValidator.new
             when 'MM'
