@@ -17,7 +17,13 @@ require_relative 'format_validators/bo_postcode_validator'
 require_relative 'format_validators/la_postcode_validator'
 require_relative 'format_validators/bd_postcode_validator'
 require_relative 'format_validators/mm_postcode_validator'
-
+require_relative 'format_validators/uy_postcode_validator'
+require_relative 'format_validators/pk_postcode_validator'
+require_relative 'format_validators/id_postcode_validator'
+require_relative 'format_validators/gr_postcode_validator'
+require_relative 'format_validators/ie_postcode_validator'
+require_relative 'format_validators/hu_postcode_validator'
+require_relative 'format_validators/lk_postcode_validator'
 require_relative 'format_validators/no_op_postcode_validator'
 
 module PostcodeValidation
@@ -64,6 +70,20 @@ module PostcodeValidation
               FormatValidators::BDPostcodeValidator.new
             when 'MM'
               FormatValidators::MMPostcodeValidator.new
+            when 'UY'
+              FormatValidators::UYPostcodeValidator.new
+            when 'PK'
+              FormatValidators::PKPostcodeValidator.new
+            when 'ID'
+              FormatValidators::IDPostcodeValidator.new
+            when 'GR'
+              FormatValidators::GRPostcodeValidator.new
+            when 'IE'
+              FormatValidators::IEPostcodeValidator.new
+            when 'HU'
+              FormatValidators::HUPostcodeValidator.new
+            when 'LK'
+              FormatValidators::LKPostcodeValidator.new
             else
               FormatValidators::NoOpPostcodeValidator.new
           end
