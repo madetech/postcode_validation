@@ -1,5 +1,5 @@
 require_relative 'regex_validator'
-require_relative 'use_external_postcode_validator'
+require_relative 'use_format_check_only'
 
 module PostcodeValidation
   module UseCase
