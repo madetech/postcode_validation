@@ -6,7 +6,7 @@ module PostcodeValidation
     class ValidateAddress
       module FormatValidators
         class NLPostcodeValidator < RegexValidator
-          include UseExternalPostcodeValidator
+          include UseFormatCheckOnly
 
           REGEX = /(NL-)?(\d{4})\s*([A-Za-z]{2})/
         end
